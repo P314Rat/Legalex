@@ -11,9 +11,10 @@
 
     public enum OrderStatus
     {
-        InProgress,
         Pending,
-        Closed
+        InProgress,
+        Successful,
+        Failed
     }
 
     public class Order

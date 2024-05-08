@@ -12,15 +12,17 @@ namespace Legalex.Infrastructure.Services.Implementations
         public IRepository<Order> Orders => _orderRepository;//public repository interface
 
 
-        public UnitOfWork(string connectionString)
+        public UnitOfWork()
         {
-            _dbContext = new DesignTimeDbContextFactory().CreateDbContext(new string[] { connectionString });
+            _dbContext = new DesignTimeDbContextFactory().CreateDbContext(new string[] { });
             _orderRepository = new OrderRepository(_dbContext);
+            InitialDatabase();
+        }
 
+        private void InitialDatabase()
+        {
             if (_dbContext.Database.GetPendingMigrations().Any())
-            {
                 _dbContext.Database.Migrate();
-            }
         }
 
         public void Dispose()

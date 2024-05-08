@@ -1,5 +1,4 @@
-﻿using Legalex.Infrastructure.Services.Interfaces;
-using Legalex.Logic.Services;
+﻿using Legalex.Web.Services;
 
 namespace Legalex.Web
 {
@@ -14,9 +13,10 @@ namespace Legalex.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddUnitOfWork(Configuration["ConnectionStrings:DefaultConnection"]);
+            services.AddMediatR(config => config.RegisterServicesFromAssemblyContaining(typeof(Logic.Services.ServiceProvider)));
+            services.AddInfrastructureServices();
         }
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IUnitOfWork uow)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {

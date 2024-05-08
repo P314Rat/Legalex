@@ -17,10 +17,10 @@ namespace Legalex.Infrastructure.Services.Implementations
 
             IConfigurationRoot config = builder.Build();
 
-            string connectionString = config.GetConnectionString("DefaultConnection");
+            var connectionString = config.GetConnectionString("DefaultConnection");
 
             if (connectionString == null)
-                throw new Exception("Connection string is empty");
+                throw new Exception("Connection string is not exist");
 
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseSqlServer(connectionString);

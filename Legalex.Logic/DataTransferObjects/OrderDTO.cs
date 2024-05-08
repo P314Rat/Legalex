@@ -1,6 +1,6 @@
 ﻿using Legalex.Infrastructure.Domain;
 
-namespace Legalex.Logic.DTO
+namespace Legalex.Logic.DataTransferObjects
 {
     public class OrderDTO
     {

@@ -8,12 +8,12 @@ namespace Legalex.Web.Controllers.API
     abstract public class BaseApiController : ControllerBase, IBaseApiOperations
     {
         [HttpPost]
-        public abstract IActionResult Add(JsonObject model);
+        public abstract Task<IActionResult> Add(JsonObject model);
 
         [HttpGet]
-        public abstract IActionResult Get(string id);
+        public abstract Task<IActionResult> Get(string id);
 
         [HttpDelete]
-        public abstract IActionResult Delete(string id);
+        public abstract Task<IActionResult> Delete(string id);
     }
 }

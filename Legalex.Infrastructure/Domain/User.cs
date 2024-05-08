@@ -1,6 +1,6 @@
 ﻿namespace Legalex.Infrastructure.Domain
 {
-    public class User
+    public abstract class User
     {
         public Guid Id { get; set; } //primary key
         public string Login { get; set; } //non nullable
