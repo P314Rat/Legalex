@@ -13,16 +13,11 @@ const headers: IHeaderLink[] = [
   {
     title: 'Услуги',
     link: '/services',
-    // sublinks: [
-    //   { title: 'Юридические услуги', link: '/legal' },
-    //   { title: 'HR — услуги', link: '/hr' },
-    //   { title: 'Услуги экономиста', link: '/economy' },
-    //   { title: 'Бухгалтерские услуги', link: '/accounting' },
-    // ],
   },
   { title: 'О нас', link: '/#About' },
+  { title: 'Оставить заявку', link: '/#Documents' },
   { title: 'Документы', link: '/#Documents' },
-  { title: 'Связаться с нами', link: '/#ContactUs' },
+  { title: 'Контакты', link: '/#Contacts' },
 ]
 
 export const handleAnchorLink = (href: string) => {
@@ -159,7 +154,7 @@ const Header = () => {
           </div>
         </div>
       </header>
-      <Modal isOpen={isActiveMenu} setIsOpen={setIsActiveMenu} onClose={() => { }}>
+      <Modal isOpen={isActiveMenu} setIsOpen={setIsActiveMenu} onClose={() => {}}>
         <div className="container">
           <div className="flex flex-col items-center gap-2 pt-8 text-2xl text-white">
             {headers.map((link) => {

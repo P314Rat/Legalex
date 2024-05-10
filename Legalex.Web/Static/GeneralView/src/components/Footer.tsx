@@ -91,9 +91,9 @@ const Footer = () => {
                   Документы
                 </Link>
                 <Link
-                  to="/#ContactUs"
+                  to="/#Contacts"
                   className="hover:text-white"
-                  onClick={() => location.pathname === '/' && handleAnchorLink('/#ContactUs')}
+                  onClick={() => location.pathname === '/' && handleAnchorLink('/#Contacts')}
                 >
                   Связаться с нами
                 </Link>

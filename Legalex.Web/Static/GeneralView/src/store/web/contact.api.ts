@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { IContactUs } from '../../modules/contact'
+import { IContacts } from '../../modules/contact'
 
 const HOST = 'legalex.by'
 //process.env.REACT_APP_HOST
@@ -12,7 +12,7 @@ export const contactApi = createApi({
 
   endpoints: (builder) => ({
     sendFeedback: builder.mutation({
-      query: (body: IContactUs) => {
+      query: (body: IContacts) => {
         return {
           url: 'order',
           method: 'POST',

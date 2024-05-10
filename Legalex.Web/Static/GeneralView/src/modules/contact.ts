@@ -1,4 +1,4 @@
-export interface IContactUs {
+export interface IContacts {
   type: number
   service: number
   name: string

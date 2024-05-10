@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Modal from './Modal'
 import { useSendFeedbackMutation } from '../store/web/contact.api'
-import { IContactUs } from '../modules/contact'
+import { IContacts } from '../modules/contact'
 
 export interface IForm {
   selectService?: number
@@ -45,11 +45,11 @@ const Form = ({ selectService }: IForm) => {
       <form
         ref={formRef}
         className="grid gap-4 lg:col-span-3 lg:grid-cols-4 lg:gap-8"
-        id="ContactUsForm"
+        id="ContactsForm"
         onSubmit={(e) => {
           e.preventDefault()
 
-          const body: IContactUs = {
+          const body: IContacts = {
             //@ts-ignore
             name: e.currentTarget.elements.name.value,
             //@ts-ignore

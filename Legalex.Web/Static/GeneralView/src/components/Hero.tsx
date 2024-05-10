@@ -10,7 +10,8 @@ import Form from './Form'
 const heroes = [
   {
     image: '/images/hero1.webp',
-    caption: 'Мы здесь, чтобы оказывать вам юридическую помощь и обеспечить вашу уверенность',
+    caption:
+      'Мы здесь, чтобы оказать вам юридическую помощь и обеспечить вашу уверенность в завтрашнем дне',
     helpCaption: 'Получить помощь юрисконсульта',
     type: 1,
   },
@@ -19,21 +20,20 @@ const heroes = [
     caption:
       'Мы здесь, чтобы помочь вам подобрать персонал, создавая команду, на которую можно положиться',
     helpCaption: 'Получить помощь HR-менеджера',
-    type: 5,
+    type: 2,
   },
   {
     image: '/images/hero3.webp',
-    caption:
-      'Мы здесь, чтобы оказать вам консультацию экономиста и помочь вам развивать свой бизнес',
+    caption: 'Мы здесь, чтобы оказать вам консультацию экономиста и помочь вам развить свой бизнес',
     helpCaption: 'Получить помощь экономиста',
-    type: 2,
+    type: 3,
   },
   {
     image: '/images/hero4.webp',
     caption:
       'Мы здесь, чтобы оказать вам бухгалтерскую консультацию и обеспечить ваше финансовое благополучие',
     helpCaption: 'Получить помощь бухгалтера',
-    type: 3,
+    type: 4,
   },
 ]
 
@@ -54,13 +54,13 @@ const Hero = () => {
           color={'text-blue_light'}
           speed={2000}
           autoplay={{
-            delay: 8000,
+            delay: 4000,
             disableOnInteraction: false,
           }}
           loop={true}
           navigation={true}
           modules={[Pagination, Autoplay, Navigation]}
-          className="relative h-[100vh] [&_.swiper-button-next]:bottom-[5%] [&_.swiper-button-next]:top-[unset] [&_.swiper-button-next]:text-white [&_.swiper-button-next]:sm:bottom-[50%] [&_.swiper-button-prev]:bottom-[5%] [&_.swiper-button-prev]:top-[unset] [&_.swiper-button-prev]:text-white [&_.swiper-button-prev]:sm:bottom-[50%]"
+          className="relative h-[100vh] [&_.swiper-button-next]:bottom-[5%] [&_.swiper-button-next]:top-[unset] [&_.swiper-button-next]:text-white [&_.swiper-button-next]:xl:bottom-[50%] [&_.swiper-button-prev]:bottom-[5%] [&_.swiper-button-prev]:top-[unset] [&_.swiper-button-prev]:text-white [&_.swiper-button-prev]:xl:bottom-[50%]"
         >
           {heroes.map((hero) => {
             return (
