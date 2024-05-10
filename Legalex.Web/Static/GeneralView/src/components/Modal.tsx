@@ -44,8 +44,8 @@ const Modal = ({ children, isSize, isOpen, setIsOpen }: IModal) => {
               >
                 <Dialog.Panel
                   className={clsx(
-                    isSize ? 'max-w-4xl' : 'max-w-lg',
-                    'w-full  transform overflow-hidden rounded-2xl bg-blue_dark/60 px-6 pb-6 text-left align-middle text-white shadow-xl transition-all'
+                    isSize ? 'max-w-4xl' : 'max-w-3xl',
+                    'w-full  transform overflow-hidden rounded-lg bg-blue_dark/60 px-6 pb-6 text-left align-middle text-white shadow-xl transition-all'
                   )}
                 >
                   <Dialog.Title className="flex justify-end pb-3 pt-4">

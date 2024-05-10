@@ -74,8 +74,9 @@ const Form = ({ selectService }: IForm) => {
           }}
           className="border-2 border-white bg-blue_light/40 px-1 py-2 text-lg text-white opacity-80 !outline-none placeholder:text-white/90 valid:border-blue_light hover:opacity-100 focus-visible:rounded-none active:opacity-100 md:px-3 md:py-4 lg:col-span-2"
         >
-          <option value="1">Юридическое лицо</option>
+          <option value="">Выберите тип лица</option>
           <option value="0">Физическое лицо</option>
+          <option value="1">Юридическое лицо</option>
         </select>
         <select
           id="service"
@@ -84,6 +85,7 @@ const Form = ({ selectService }: IForm) => {
           onInvalid={(e) => e.currentTarget.classList.add('invalid:border-rose-500')}
           className="border-2 border-white bg-blue_light/40 px-1 py-2 text-lg text-white opacity-80 !outline-none placeholder:text-white/90 valid:border-blue_light hover:opacity-100 focus-visible:rounded-none active:opacity-100 md:px-3 md:py-4 lg:col-span-2"
         >
+          <option value="">Выберите специалиста</option>
           <option value="0">Не могу выбрать специалиста</option>
           <option value="1">Юридические услуги</option>
           <option value="2">Услуги экономиста</option>

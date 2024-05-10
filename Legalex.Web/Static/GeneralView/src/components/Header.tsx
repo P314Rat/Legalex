@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useResize } from '../libs/hooks/use-resize'
 import Modal from './Modal'
+import Form from './Form'
 
 interface IHeaderLink {
   title: string
@@ -15,7 +16,7 @@ const headers: IHeaderLink[] = [
     link: '/services',
   },
   { title: 'О нас', link: '/#About' },
-  { title: 'Оставить заявку', link: '/#Documents' },
+  { title: 'Оставить заявку', link: '' },
   { title: 'Документы', link: '/#Documents' },
   { title: 'Контакты', link: '/#Contacts' },
 ]
@@ -26,6 +27,7 @@ export const handleAnchorLink = (href: string) => {
 
 const Header = () => {
   const [isActiveMenu, setIsActiveMenu] = useState(false)
+  const [isActiveOrderForm, setIsActiveOrderForm] = useState(false)
   const [filling, setFilling] = useState(0)
   const resize = useResize()
   const location = useLocation()
@@ -121,15 +123,18 @@ const Header = () => {
                           key={link.title}
                           to={link.link}
                           onClick={() => {
-                            location.pathname === '/' &&
+                            ;(link.link.length !== 0 &&
+                              location.pathname === '/' &&
                               link.link.includes('#') &&
-                              handleAnchorLink(link.link)
+                              handleAnchorLink(link.link)) ||
+                              setIsActiveOrderForm(true)
                           }}
                           className="border-b-2 border-transparent transition-all hover:border-blue_light"
                         >
                           {link.title}
                         </Link>
                       )
+
                     return <></>
                   })}
                 </div>
@@ -154,6 +159,9 @@ const Header = () => {
           </div>
         </div>
       </header>
+      <Modal isOpen={isActiveOrderForm} setIsOpen={setIsActiveOrderForm} onClose={() => {}}>
+        <Form></Form>
+      </Modal>
       <Modal isOpen={isActiveMenu} setIsOpen={setIsActiveMenu} onClose={() => {}}>
         <div className="container">
           <div className="flex flex-col items-center gap-2 pt-8 text-2xl text-white">
@@ -164,9 +172,10 @@ const Header = () => {
                     key={link.title}
                     to={link.link}
                     onClick={() => {
-                      location.pathname === '/' &&
+                      ;(location.pathname === '/' &&
                         link.link.includes('#') &&
-                        handleAnchorLink(link.link)
+                        handleAnchorLink(link.link)) ||
+                        setIsActiveOrderForm(true)
 
                       setIsActiveMenu((e) => !e)
                     }}
