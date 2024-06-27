@@ -117,17 +117,13 @@ const Header = () => {
               <>
                 <div className="hidden gap-4 text-2xl lg:flex">
                   {headers.map((link) => {
-                    if (!link.sublinks)
+                    if (link.link.length)
                       return (
                         <Link
                           key={link.title}
                           to={link.link}
                           onClick={() => {
-                            ;(link.link.length !== 0 &&
-                              location.pathname === '/' &&
-                              link.link.includes('#') &&
-                              handleAnchorLink(link.link)) ||
-                              setIsActiveOrderForm(true)
+                            link.link.includes('#') && handleAnchorLink(link.link)
                           }}
                           className="border-b-2 border-transparent transition-all hover:border-blue_light"
                         >
@@ -135,7 +131,18 @@ const Header = () => {
                         </Link>
                       )
 
-                    return <></>
+                    return (
+                      <button
+                        className="border-b-2 border-transparent transition-all hover:border-blue_light"
+                        type="button"
+                        key={link.title}
+                        onClick={() => {
+                          setIsActiveOrderForm(true)
+                        }}
+                      >
+                        {link.title}
+                      </button>
+                    )
                   })}
                 </div>
                 <Contacts />
@@ -159,10 +166,22 @@ const Header = () => {
           </div>
         </div>
       </header>
-      <Modal isOpen={isActiveOrderForm} setIsOpen={setIsActiveOrderForm} onClose={() => {}}>
+      <Modal
+        isOpen={isActiveOrderForm}
+        setIsOpen={setIsActiveOrderForm}
+        onClose={() => {
+          setIsActiveOrderForm(false)
+        }}
+      >
         <Form></Form>
       </Modal>
-      <Modal isOpen={isActiveMenu} setIsOpen={setIsActiveMenu} onClose={() => {}}>
+      <Modal
+        isOpen={isActiveMenu}
+        setIsOpen={setIsActiveMenu}
+        onClose={() => {
+          setIsActiveMenu(false)
+        }}
+      >
         <div className="container">
           <div className="flex flex-col items-center gap-2 pt-8 text-2xl text-white">
             {headers.map((link) => {

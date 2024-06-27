@@ -16,7 +16,7 @@ const Contacts = () => {
             </div>
             <div className="mt-16">
               <div className="grid min-h-[20rem] gap-4 text-black md:gap-8 lg:grid-cols-3 lg:gap-12">
-                <div className="flex flex-col gap-4">
+                <div className="flex max-w-[28rem] flex-col gap-4">
                   <div className="flex w-full gap-4 lg:justify-center lg:gap-6">
                     <div className="relative z-[1] h-full max-h-[2.5rem] min-h-[2.5rem] w-full max-w-[2.5rem] bg-blue_light">
                       <img

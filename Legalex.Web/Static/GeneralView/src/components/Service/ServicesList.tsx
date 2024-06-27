@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
 import ServiceCard from './ServiceCard'
 
 const list = [
@@ -27,6 +28,15 @@ const list = [
 const ServicesList = () => {
   return (
     <>
+      <Helmet>
+        <meta
+          name="description"
+          content="Услуги опытного юриста от компании LegaLex. Мы предлагаем полную поддержку бизнеса, услуги юриста, HR, бухгалтера и экономиста."
+        />
+        <title>
+          Юридическая компания LegaLex - Услуги юриста, HR, бухгалтера и экономиста в Минске
+        </title>
+      </Helmet>
       <section id="Services" className="relative mb-8 mt-8 flex justify-center p-4 md:mt-16">
         <div className="container">
           <span className="text-xl text-blue_light lg:ml-[0.17rem]">Услуги</span>

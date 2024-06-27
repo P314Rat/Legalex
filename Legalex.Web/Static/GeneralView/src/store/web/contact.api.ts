@@ -13,6 +13,8 @@ export const contactApi = createApi({
   endpoints: (builder) => ({
     sendFeedback: builder.mutation({
       query: (body: IContacts) => {
+        console.log(body)
+
         return {
           url: 'order',
           method: 'POST',

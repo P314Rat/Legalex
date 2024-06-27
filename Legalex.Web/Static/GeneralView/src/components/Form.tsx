@@ -9,6 +9,7 @@ export interface IForm {
 
 const Form = ({ selectService }: IForm) => {
   const [sendFeedback, { isError, isSuccess }] = useSendFeedbackMutation()
+  const [isBackspacePressed, setIsBackspacePressed] = useState(false)
   const [isLegal, setIsLegal] = useState(true)
   const [isActiveSendModal, setIsActiveSendModal] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
@@ -68,21 +69,32 @@ const Form = ({ selectService }: IForm) => {
         <select
           id="type"
           required
-          onInvalid={(e) => e.currentTarget.classList.add('invalid:border-rose-500')}
+          onInvalid={(e) => {
+            e.currentTarget.classList.add('invalid:border-rose-500')
+            e.currentTarget.setCustomValidity('Тип лица не выбран')
+          }}
           onChange={(e) => {
-            setIsLegal(e.currentTarget.selectedIndex === 0 ? true : false)
+            setIsLegal(e.currentTarget.selectedIndex === 1 ? true : false)
+            e.currentTarget.setCustomValidity('')
           }}
           className="border-2 border-white bg-blue_light/40 px-1 py-2 text-lg text-white opacity-80 !outline-none placeholder:text-white/90 valid:border-blue_light hover:opacity-100 focus-visible:rounded-none active:opacity-100 md:px-3 md:py-4 lg:col-span-2"
         >
           <option value="">Выберите тип лица</option>
-          <option value="0">Физическое лицо</option>
-          <option value="1">Юридическое лицо</option>
+          <option value="0">Юридическое лицо</option>
+          <option value="1">Физическое лицо</option>
+
         </select>
         <select
           id="service"
           required
           defaultValue={selectService}
-          onInvalid={(e) => e.currentTarget.classList.add('invalid:border-rose-500')}
+          onInvalid={(e) => {
+            e.currentTarget.classList.add('invalid:border-rose-500')
+            e.currentTarget.setCustomValidity('Специалист не выбран не выбран')
+          }}
+          onChange={(e) => {
+            e.currentTarget.setCustomValidity('')
+          }}
           className="border-2 border-white bg-blue_light/40 px-1 py-2 text-lg text-white opacity-80 !outline-none placeholder:text-white/90 valid:border-blue_light hover:opacity-100 focus-visible:rounded-none active:opacity-100 md:px-3 md:py-4 lg:col-span-2"
         >
           <option value="">Выберите специалиста</option>
@@ -98,7 +110,13 @@ const Form = ({ selectService }: IForm) => {
             placeholder="Название юридического лица"
             id="name"
             name="name"
-            onInvalid={(e) => e.currentTarget.classList.add('invalid:border-rose-500')}
+            onInvalid={(e) => {
+              e.currentTarget.classList.add('invalid:border-rose-500')
+              e.currentTarget.setCustomValidity('Название не указано')
+            }}
+            onChange={(e) => {
+              e.currentTarget.setCustomValidity('')
+            }}
             required
             className="border-2 border-white bg-blue_light/40 px-1 py-2 text-lg text-white opacity-80 !outline-none placeholder:text-white/90 valid:border-blue_light hover:opacity-100 focus-visible:rounded-none active:opacity-100 md:px-3 md:py-4 lg:col-span-2"
           />
@@ -107,9 +125,15 @@ const Form = ({ selectService }: IForm) => {
             placeholder="Имя"
             id="name"
             name="name"
-            onInvalid={(e) => e.currentTarget.classList.add('invalid:border-rose-500')}
             type="text"
             required
+            onInvalid={(e) => {
+              e.currentTarget.classList.add('invalid:border-rose-500')
+              e.currentTarget.setCustomValidity('Имя не указано')
+            }}
+            onChange={(e) => {
+              e.currentTarget.setCustomValidity('')
+            }}
             className="border-2 border-white bg-blue_light/40 px-1 py-2 text-lg text-white opacity-80 !outline-none placeholder:text-white/90 valid:border-blue_light hover:opacity-100 focus-visible:rounded-none active:opacity-100 md:px-3 md:py-4 lg:col-span-2"
           />
         )}
@@ -117,16 +141,48 @@ const Form = ({ selectService }: IForm) => {
           placeholder="Телефон"
           type="tel"
           id="phone"
-          onInvalid={(e) => e.currentTarget.classList.add('invalid:border-rose-500')}
+          name="phone"
+          //pattern="[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
+          maxLength={12}
+          // onKeyDown={(e) => {
+          //   if (e.key === 'Backspace') {
+          //     setIsBackspacePressed(true)
+          //   } else {
+          //     setIsBackspacePressed(false)
+          //   }
+          // }}
+          // onInput={(e) => {
+          //   if (isBackspacePressed) return
+
+          //   const inputStr = e.currentTarget.value
+          //   e.currentTarget.setCustomValidity('')
+
+          //   if (inputStr.length === 3 || inputStr.length === 7 || inputStr.length === 10) {
+          //     const str =
+          //       inputStr.substring(0, inputStr.length - 1) + '-' + inputStr[inputStr.length - 1]
+          //     e.currentTarget.value = str
+          //   }
+          // }}
+          // onChange={(e) => {}}
           required
+          onInvalid={(e) => {
+            e.currentTarget.classList.add('invalid:border-rose-500')
+            e.currentTarget.setCustomValidity('Телефон не указан')
+          }}
           className="border-2 border-white bg-blue_light/40 px-1 py-2 text-lg text-white opacity-80 !outline-none placeholder:text-white/90 valid:border-blue_light hover:opacity-100 focus-visible:rounded-none active:opacity-100 md:px-3 md:py-4 lg:col-span-2"
         />
 
         <textarea
           placeholder="Опишите вашу проблему"
           id="message"
-          onInvalid={(e) => e.currentTarget.classList.add('invalid:border-rose-500')}
           required
+          onInvalid={(e) => {
+            e.currentTarget.classList.add('invalid:border-rose-500')
+            e.currentTarget.setCustomValidity('Описание не добавлено')
+          }}
+          onChange={(e) => {
+            e.currentTarget.setCustomValidity('')
+          }}
           className="min-h-[160px] border-2 border-white bg-blue_light/40 px-1 py-2 text-lg text-white opacity-80 !outline-none  placeholder:text-white/90 valid:border-blue_light hover:opacity-100 focus-visible:rounded-none active:opacity-100 md:min-h-[320px] md:px-3 md:py-4 lg:col-span-4"
         />
         {!isLegal && (

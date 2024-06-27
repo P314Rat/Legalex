@@ -21,6 +21,7 @@ const Footer = () => {
               <span className="text-center text-white/80 md:text-start">
                 LegaLex - Ваш комплексный партнер в юриспруденции, финансах и управлении персоналом.
               </span>
+              <p>УНП: 193562049</p>
             </div>
             <div className="mx-auto w-fit sm:col-span-2 md:col-span-1">
               <span className="text-2xl">Офисная информация</span>

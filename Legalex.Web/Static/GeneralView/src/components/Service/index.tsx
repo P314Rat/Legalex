@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { getService } from '../../libs/utils/get-service'
+import { Helmet } from 'react-helmet-async'
 
 export interface IService {
   id: string
@@ -10,13 +11,18 @@ export interface IService {
 
 const Service = ({ content }: { content: IService }) => {
   const service_ = getService(content.id)
+
   return (
     <>
+      <Helmet>
+        <meta name="description" content={service_?.meta.description} />
+        <title>{service_?.meta.title}</title>
+      </Helmet>
       <section id="Service" className="relative mb-8 mt-8 flex justify-center p-4 md:mt-16">
         <div className="container relative">
           <Link
             to="/services"
-            className="absolute -top-16 right-0 mt-4 w-fit border-2 border-white text-white bg-blue_dark/80 px-2 py-1 text-lg transition-all duration-300 hover:border-blue_light"
+            className="absolute -top-16 right-0 mt-4 w-fit border-2 border-white bg-blue_dark/80 px-2 py-1 text-lg text-white transition-all duration-300 hover:border-blue_light"
           >
             Вернуться к списку услуг
           </Link>
