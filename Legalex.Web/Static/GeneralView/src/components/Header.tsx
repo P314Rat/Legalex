@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useResize } from '../libs/hooks/use-resize'
+import { useSendFeedbackMutation } from '../store/web/contact.api'
 import Modal from './Modal'
 import Form from './Form'
 
@@ -28,9 +29,18 @@ export const handleAnchorLink = (href: string) => {
 const Header = () => {
   const [isActiveMenu, setIsActiveMenu] = useState(false)
   const [isActiveOrderForm, setIsActiveOrderForm] = useState(false)
+  const [isActiveSendModal, setIsActiveSendModal] = useState(false)
+  const [isSendOrderSuccess, setIsSendOrderSuccess] = useState(false)
   const [filling, setFilling] = useState(0)
   const resize = useResize()
   const location = useLocation()
+
+  useEffect(() => {
+    if (!isActiveOrderForm) {
+      setIsActiveSendModal((i) => !i)
+      setIsSendOrderSuccess(false)
+    }
+  }, [isActiveOrderForm])
 
   useEffect(() => {
     document.onscroll = () => {
@@ -173,7 +183,30 @@ const Header = () => {
           setIsActiveOrderForm(false)
         }}
       >
-        <Form></Form>
+        <Form onClose={() => setIsActiveOrderForm(false)} submitted = {setIsSendOrderSuccess}></Form>
+      </Modal>
+      <Modal
+        isOpen={isActiveSendModal}
+        setIsOpen={setIsActiveSendModal}
+        onClose={() => {
+          setIsActiveSendModal(false)
+
+        }}
+      >
+        {isSendOrderSuccess ? (
+          <div className="flex flex-col justify-center gap-2 text-lg">
+            <span>Ваше сообщение отправлено!</span>
+            <span>В ближайшее время с вами свяжется наш специалист.</span>
+          </div>
+        ) : (
+          <div className="flex flex-col justify-center gap-2 text-lg">
+            <span>
+              Приносим свои извинения, но в данный момент сообщение не может быть отправлено.
+            </span>
+            <span>Попробуйте изменить заполняемые данные или попробуйте другие способы связи.</span>
+            <span>Спасибо за понимание!</span>
+          </div>
+        )}
       </Modal>
       <Modal
         isOpen={isActiveMenu}

@@ -5,44 +5,31 @@ import { IContacts } from '../modules/contact'
 
 export interface IForm {
   selectService?: number
+  onClose?: () => void
+  submitted?: any
 }
 
-const Form = ({ selectService }: IForm) => {
-  const [sendFeedback, { isError, isSuccess }] = useSendFeedbackMutation()
-  const [isBackspacePressed, setIsBackspacePressed] = useState(false)
+const Form = ({ selectService, onClose, submitted }: IForm) => {
+  const [sendFeedback, { isError, isSuccess, isLoading }] = useSendFeedbackMutation()
   const [isLegal, setIsLegal] = useState(true)
-  const [isActiveSendModal, setIsActiveSendModal] = useState(false)
+  
   const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
     if (isError || isSuccess) {
-      setIsActiveSendModal((i) => !i)
       formRef?.current?.reset()
     }
   }, [isSuccess, isError])
 
+  useEffect(() => {
+    if (isLoading) {
+      onClose && onClose()
+      submitted && submitted(true)
+    }
+  }, [isLoading])
+
   return (
     <>
-      <Modal
-        isOpen={isActiveSendModal}
-        setIsOpen={setIsActiveSendModal}
-        onClose={() => setIsActiveSendModal(false)}
-      >
-        {isSuccess ? (
-          <div className="flex flex-col justify-center gap-2 text-lg">
-            <span>Ваше сообщение отправлено!</span>
-            <span>В ближайшее время с вами свяжется наш специалист.</span>
-          </div>
-        ) : (
-          <div className="flex flex-col justify-center gap-2 text-lg">
-            <span>
-              Приносим свои извинения, но в данный момент сообщение не может быть отправлено.
-            </span>
-            <span>Попробуйте изменить заполняемые данные или попробуйте другие способы связи.</span>
-            <span>Спасибо за понимание!</span>
-          </div>
-        )}
-      </Modal>
       <form
         ref={formRef}
         className="grid gap-4 lg:col-span-3 lg:grid-cols-4 lg:gap-8"
