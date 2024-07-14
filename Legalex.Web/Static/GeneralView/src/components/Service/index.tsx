@@ -26,7 +26,7 @@ const Service = ({ content }: { content: IService }) => {
           >
             Вернуться к списку услуг
           </Link>
-          <span className="text-xl text-blue_light lg:ml-[0.17rem]">{service_?.title}</span>
+          <h1 className="text-xl text-blue_light lg:ml-[0.17rem]">{service_?.title}</h1>
           <h3
             className="mb-16 text-2xl sm:text-4xl lg:text-6xl"
             dangerouslySetInnerHTML={{ __html: service_?.caption! }}

@@ -92,8 +92,17 @@ const Contacts = () => {
                       </a>
                     </span>
                   </div>
+                  <button
+                    className="p-4"
+                    style={{ backgroundColor: 'rgb(13, 59, 102)' }}
+                    type="button"
+                    // onClick={() => {
+                    //   setIsActiveOrderForm(true)
+                    // }}
+                  >
+                    Оставить заявку
+                  </button>
                 </div>
-                {/* <Form /> */}
               </div>
             </div>
           </div>

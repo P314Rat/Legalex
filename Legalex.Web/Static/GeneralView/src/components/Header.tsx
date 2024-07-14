@@ -28,25 +28,30 @@ export const handleAnchorLink = (href: string) => {
 
 const Header = () => {
   const [isActiveMenu, setIsActiveMenu] = useState(false)
+  const [sendFeedback, { isError, isSuccess, isLoading }] = useSendFeedbackMutation()
   const [isActiveOrderForm, setIsActiveOrderForm] = useState(false)
   const [isActiveSendModal, setIsActiveSendModal] = useState(false)
-  const [isSendOrderSuccess, setIsSendOrderSuccess] = useState(false)
   const [filling, setFilling] = useState(0)
   const resize = useResize()
   const location = useLocation()
 
   useEffect(() => {
-    if (!isActiveOrderForm) {
+    if (!isActiveOrderForm && (isSuccess || isError)) {
       setIsActiveSendModal((i) => !i)
-      setIsSendOrderSuccess(false)
     }
-  }, [isActiveOrderForm])
+  }, [isActiveOrderForm, isSuccess, isError])
 
   useEffect(() => {
     document.onscroll = () => {
       setFilling(document.documentElement.scrollTop / 320)
     }
   }, [])
+
+  useEffect(() => {
+    if (isLoading) {
+      setIsActiveOrderForm(false)
+    }
+  }, [isLoading])
 
   const Contacts = () => {
     return (
@@ -133,7 +138,9 @@ const Header = () => {
                           key={link.title}
                           to={link.link}
                           onClick={() => {
-                            link.link.includes('#') && handleAnchorLink(link.link)
+                            ;(link.link.includes('#') && handleAnchorLink(link.link)) ||
+                            (link.title === 'Оставить заявку' && setIsActiveOrderForm(true))
+
                           }}
                           className="border-b-2 border-transparent transition-all hover:border-blue_light"
                         >
@@ -183,17 +190,16 @@ const Header = () => {
           setIsActiveOrderForm(false)
         }}
       >
-        <Form onClose={() => setIsActiveOrderForm(false)} submitted = {setIsSendOrderSuccess}></Form>
+        <Form sendFeedback={sendFeedback} isError isSuccess isLoading></Form>
       </Modal>
       <Modal
         isOpen={isActiveSendModal}
         setIsOpen={setIsActiveSendModal}
         onClose={() => {
           setIsActiveSendModal(false)
-
         }}
       >
-        {isSendOrderSuccess ? (
+        {isSuccess && !isError ? (
           <div className="flex flex-col justify-center gap-2 text-lg">
             <span>Ваше сообщение отправлено!</span>
             <span>В ближайшее время с вами свяжется наш специалист.</span>
@@ -224,10 +230,8 @@ const Header = () => {
                     key={link.title}
                     to={link.link}
                     onClick={() => {
-                      ;(location.pathname === '/' &&
-                        link.link.includes('#') &&
-                        handleAnchorLink(link.link)) ||
-                        setIsActiveOrderForm(true)
+                      ;(link.link.includes('#') && handleAnchorLink(link.link)) ||
+                        (link.title === 'Оставить заявку' && setIsActiveOrderForm(true))
 
                       setIsActiveMenu((e) => !e)
                     }}

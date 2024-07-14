@@ -5,14 +5,15 @@ import { IContacts } from '../modules/contact'
 
 export interface IForm {
   selectService?: number
-  onClose?: () => void
-  submitted?: any
+  sendFeedback?: (body: IContacts) => void
+  isError?: boolean
+  isSuccess?: boolean
+  isLoading?: boolean
 }
 
-const Form = ({ selectService, onClose, submitted }: IForm) => {
-  const [sendFeedback, { isError, isSuccess, isLoading }] = useSendFeedbackMutation()
+const Form = ({ selectService, sendFeedback, isError, isSuccess, isLoading }: IForm) => {
   const [isLegal, setIsLegal] = useState(true)
-  
+
   const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
@@ -20,13 +21,6 @@ const Form = ({ selectService, onClose, submitted }: IForm) => {
       formRef?.current?.reset()
     }
   }, [isSuccess, isError])
-
-  useEffect(() => {
-    if (isLoading) {
-      onClose && onClose()
-      submitted && submitted(true)
-    }
-  }, [isLoading])
 
   return (
     <>
@@ -50,7 +44,7 @@ const Form = ({ selectService, onClose, submitted }: IForm) => {
             description: e.currentTarget.elements.message.value,
           }
 
-          sendFeedback(body)
+          sendFeedback && sendFeedback(body)
         }}
       >
         <select
@@ -69,7 +63,6 @@ const Form = ({ selectService, onClose, submitted }: IForm) => {
           <option value="">Выберите тип лица</option>
           <option value="0">Юридическое лицо</option>
           <option value="1">Физическое лицо</option>
-
         </select>
         <select
           id="service"
