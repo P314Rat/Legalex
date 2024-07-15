@@ -4,6 +4,7 @@ import { useResize } from '../libs/hooks/use-resize'
 import { useSendFeedbackMutation } from '../store/web/contact.api'
 import Modal from './Modal'
 import Form from './Form'
+import OrderForm from './OrderForm'
 
 interface IHeaderLink {
   title: string
@@ -15,6 +16,24 @@ const headers: IHeaderLink[] = [
   {
     title: 'Услуги',
     link: '/services',
+    sublinks: [
+      {
+        title: 'Юридические услуги',
+        link: '/services/legal',
+      },
+      {
+        title: 'HR услуги',
+        link: '/services/hr',
+      },
+      {
+        title: 'Услуги экономиста',
+        link: '/services/economy',
+      },
+      {
+        title: 'Бухгалтерские услуги',
+        link: '/services/accounting',
+      },
+    ],
   },
   { title: 'О нас', link: '/#About' },
   { title: 'Оставить заявку', link: '' },
@@ -28,30 +47,46 @@ export const handleAnchorLink = (href: string) => {
 
 const Header = () => {
   const [isActiveMenu, setIsActiveMenu] = useState(false)
-  const [sendFeedback, { isError, isSuccess, isLoading }] = useSendFeedbackMutation()
   const [isActiveOrderForm, setIsActiveOrderForm] = useState(false)
-  const [isActiveSendModal, setIsActiveSendModal] = useState(false)
   const [filling, setFilling] = useState(0)
   const resize = useResize()
   const location = useLocation()
 
   useEffect(() => {
-    if (!isActiveOrderForm && (isSuccess || isError)) {
-      setIsActiveSendModal((i) => !i)
+    const hoverTargets = document.querySelectorAll('.hover-target')
+
+    const handleMouseOver = () => {
+      const links = document.querySelectorAll('.hover-target > a, .hover-target > div > div > a')
+      links.forEach((link) => {
+        link.classList.remove('hidden')
+      })
     }
-  }, [isActiveOrderForm, isSuccess, isError])
+
+    const handleMouseOut = () => {
+      const links = document.querySelectorAll('.hover-target > div > div > a')
+      links.forEach((link) => {
+        link.classList.add('hidden')
+      })
+    }
+
+    hoverTargets.forEach((target) => {
+      target.addEventListener('mouseover', handleMouseOver)
+      target.addEventListener('mouseout', handleMouseOut)
+    })
+
+    return () => {
+      hoverTargets.forEach((target) => {
+        target.removeEventListener('mouseover', handleMouseOver)
+        target.removeEventListener('mouseout', handleMouseOut)
+      })
+    }
+  }, [])
 
   useEffect(() => {
     document.onscroll = () => {
       setFilling(document.documentElement.scrollTop / 320)
     }
   }, [])
-
-  useEffect(() => {
-    if (isLoading) {
-      setIsActiveOrderForm(false)
-    }
-  }, [isLoading])
 
   const Contacts = () => {
     return (
@@ -132,21 +167,56 @@ const Header = () => {
               <>
                 <div className="hidden gap-4 text-2xl lg:flex">
                   {headers.map((link) => {
-                    if (link.link.length)
-                      return (
-                        <Link
-                          key={link.title}
-                          to={link.link}
-                          onClick={() => {
-                            ;(link.link.includes('#') && handleAnchorLink(link.link)) ||
-                            (link.title === 'Оставить заявку' && setIsActiveOrderForm(true))
+                    if (link.link.length) {
+                      if (!link.sublinks) {
+                        console.log(link.title)
+                        return (
+                          <Link
+                            key={link.title}
+                            to={link.link}
+                            onClick={() => {
+                              ;(link.link.includes('#') && handleAnchorLink(link.link)) ||
+                                (link.title === 'Оставить заявку' && setIsActiveOrderForm(true))
+                            }}
+                            className="border-b-2 border-transparent transition-all hover:border-blue_light"
+                          >
+                            {link.title}
+                          </Link>
+                        )
+                      } else {
+                        const markup = link.sublinks.map((item) => {
+                          // console.log(item.title)
+                          return (
+                            <Link
+                              key={item.title}
+                              to={item.link}
+                              className="hidden border-b-2 border-transparent p-4 transition-all hover:border-blue_light"
+                            >
+                              {item.title}
+                            </Link>
+                          )
+                        })
 
-                          }}
-                          className="border-b-2 border-transparent transition-all hover:border-blue_light"
-                        >
-                          {link.title}
-                        </Link>
-                      )
+                        console.log(link.title)
+                        return (
+                          <div key={link.title} className="hover-target relative flex flex-col">
+                            <Link
+                              to={link.link}
+                              onClick={() => {
+                                ;(link.link.includes('#') && handleAnchorLink(link.link)) ||
+                                  (link.title === 'Оставить заявку' && setIsActiveOrderForm(true))
+                              }}
+                              className="border-b-2 border-transparent transition-all hover:border-blue_light"
+                            >
+                              {link.title}
+                            </Link>
+                            <div className="absolute top-8 pt-8">
+                              <div className="flex w-max flex-col bg-blue_dark">{markup}</div>
+                            </div>
+                          </div>
+                        )
+                      }
+                    }
 
                     return (
                       <button
@@ -166,6 +236,91 @@ const Header = () => {
               </>
             ) : (
               <>
+                <Modal
+                  isOpen={isActiveMenu}
+                  setIsOpen={setIsActiveMenu}
+                  onClose={() => {
+                    setIsActiveMenu(false)
+                  }}
+                >
+                  <div className="container">
+                    <div className="flex flex-col items-center gap-2 pt-8 text-2xl text-white">
+                      {headers.map((link) => {
+                        console.log(link.title)
+                        return (
+                          <Link
+                            key={link.title}
+                            to={link.link}
+                            onClick={() => {
+                              ;(link.link.includes('#') && handleAnchorLink(link.link)) ||
+                                (link.title === 'Оставить заявку' && setIsActiveOrderForm(true))
+
+                              setIsActiveMenu((e) => !e)
+                            }}
+                            className="border-b-2 border-transparent transition-all hover:border-blue_light"
+                          >
+                            {link.title}
+                          </Link>
+                        )
+                      })}
+                    </div>
+                    <div className="mt-8 flex flex-col items-center gap-1 text-white">
+                      <a href="tel:+375447905525" className="underline-offset-2 hover:underline">
+                        +375 (44) 790-55-25
+                      </a>
+                      <div className="flex gap-2">
+                        <a
+                          href="https://t.me/Lega_Lex"
+                          target={'_blank'}
+                          rel="noreferrer"
+                          className="relative h-8 w-8 rounded-full border border-white hover:bg-blue_light/50"
+                        >
+                          <img
+                            src="/images/telegram.svg"
+                            alt="telegram"
+                            className="absolute left-2/4 top-2/4 h-5 w-5 -translate-x-2/4 -translate-y-2/4"
+                          />
+                        </a>
+                        <a
+                          href="viber://chat?number=%2B375447905525"
+                          target={'_blank'}
+                          rel="noreferrer"
+                          className="relative h-8 w-8 rounded-full border border-white hover:bg-blue_light/50"
+                        >
+                          <img
+                            src="/images/viber.svg"
+                            alt="telegram"
+                            className="absolute left-2/4 top-2/4 h-5 w-5 -translate-x-2/4 -translate-y-2/4"
+                          />
+                        </a>
+                        <a
+                          href="https://api.whatsapp.com/375447905525"
+                          target={'_blank'}
+                          rel="noreferrer"
+                          className="relative h-8 w-8 rounded-full border border-white hover:bg-blue_light/50"
+                        >
+                          <img
+                            src="/images/whatsapp.svg"
+                            alt="telegram"
+                            className="absolute left-2/4 top-2/4 h-5 w-5 -translate-x-2/4 -translate-y-2/4"
+                          />
+                        </a>
+                        <a
+                          href="https://www.instagram.com/m/lega.lex/"
+                          target={'_blank'}
+                          rel="noreferrer"
+                          className="relative h-8 w-8 rounded-full border border-white hover:bg-blue_light/50"
+                        >
+                          <img
+                            src="/images/instagram.svg"
+                            alt="telegram"
+                            className="absolute left-2/4 top-2/4 h-5 w-5 -translate-x-2/4 -translate-y-2/4"
+                          />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </Modal>
                 <button
                   className="h-12 w-12"
                   onClick={() => {
@@ -183,123 +338,7 @@ const Header = () => {
           </div>
         </div>
       </header>
-      <Modal
-        isOpen={isActiveOrderForm}
-        setIsOpen={setIsActiveOrderForm}
-        onClose={() => {
-          setIsActiveOrderForm(false)
-        }}
-      >
-        <Form sendFeedback={sendFeedback} isError isSuccess isLoading></Form>
-      </Modal>
-      <Modal
-        isOpen={isActiveSendModal}
-        setIsOpen={setIsActiveSendModal}
-        onClose={() => {
-          setIsActiveSendModal(false)
-        }}
-      >
-        {isSuccess && !isError ? (
-          <div className="flex flex-col justify-center gap-2 text-lg">
-            <span>Ваше сообщение отправлено!</span>
-            <span>В ближайшее время с вами свяжется наш специалист.</span>
-          </div>
-        ) : (
-          <div className="flex flex-col justify-center gap-2 text-lg">
-            <span>
-              Приносим свои извинения, но в данный момент сообщение не может быть отправлено.
-            </span>
-            <span>Попробуйте изменить заполняемые данные или попробуйте другие способы связи.</span>
-            <span>Спасибо за понимание!</span>
-          </div>
-        )}
-      </Modal>
-      <Modal
-        isOpen={isActiveMenu}
-        setIsOpen={setIsActiveMenu}
-        onClose={() => {
-          setIsActiveMenu(false)
-        }}
-      >
-        <div className="container">
-          <div className="flex flex-col items-center gap-2 pt-8 text-2xl text-white">
-            {headers.map((link) => {
-              if (!link.sublinks)
-                return (
-                  <Link
-                    key={link.title}
-                    to={link.link}
-                    onClick={() => {
-                      ;(link.link.includes('#') && handleAnchorLink(link.link)) ||
-                        (link.title === 'Оставить заявку' && setIsActiveOrderForm(true))
-
-                      setIsActiveMenu((e) => !e)
-                    }}
-                    className="border-b-2 border-transparent transition-all hover:border-blue_light"
-                  >
-                    {link.title}
-                  </Link>
-                )
-              return <></>
-            })}
-          </div>
-          <div className="mt-8 flex flex-col items-center gap-1 text-white">
-            <a href="tel:+375447905525" className="underline-offset-2 hover:underline">
-              +375 (44) 790-55-25
-            </a>
-            <div className="flex gap-2">
-              <a
-                href="https://t.me/Lega_Lex"
-                target={'_blank'}
-                rel="noreferrer"
-                className="relative h-8 w-8 rounded-full border border-white hover:bg-blue_light/50"
-              >
-                <img
-                  src="/images/telegram.svg"
-                  alt="telegram"
-                  className="absolute left-2/4 top-2/4 h-5 w-5 -translate-x-2/4 -translate-y-2/4"
-                />
-              </a>
-              <a
-                href="viber://chat?number=%2B375447905525"
-                target={'_blank'}
-                rel="noreferrer"
-                className="relative h-8 w-8 rounded-full border border-white hover:bg-blue_light/50"
-              >
-                <img
-                  src="/images/viber.svg"
-                  alt="telegram"
-                  className="absolute left-2/4 top-2/4 h-5 w-5 -translate-x-2/4 -translate-y-2/4"
-                />
-              </a>
-              <a
-                href="https://api.whatsapp.com/375447905525"
-                target={'_blank'}
-                rel="noreferrer"
-                className="relative h-8 w-8 rounded-full border border-white hover:bg-blue_light/50"
-              >
-                <img
-                  src="/images/whatsapp.svg"
-                  alt="telegram"
-                  className="absolute left-2/4 top-2/4 h-5 w-5 -translate-x-2/4 -translate-y-2/4"
-                />
-              </a>
-              <a
-                href="https://www.instagram.com/m/lega.lex/"
-                target={'_blank'}
-                rel="noreferrer"
-                className="relative h-8 w-8 rounded-full border border-white hover:bg-blue_light/50"
-              >
-                <img
-                  src="/images/instagram.svg"
-                  alt="telegram"
-                  className="absolute left-2/4 top-2/4 h-5 w-5 -translate-x-2/4 -translate-y-2/4"
-                />
-              </a>
-            </div>
-          </div>
-        </div>
-      </Modal>
+      <OrderForm {...{ isActiveOrderForm, setIsActiveOrderForm }} />
     </>
   )
 }

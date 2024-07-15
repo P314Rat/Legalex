@@ -1,9 +1,12 @@
-import React from 'react'
-import Form from './Form'
+import React, { useState } from 'react'
+import OrderForm from './OrderForm'
 
 const Contacts = () => {
+  const [isActiveOrderForm, setIsActiveOrderForm] = useState(false)
+
   return (
     <>
+      <OrderForm {...{ isActiveOrderForm, setIsActiveOrderForm }}></OrderForm>
       <section id="Contacts" className="relative flex justify-center px-4 py-8 lg:py-16">
         <div className="container">
           <div>
@@ -93,12 +96,11 @@ const Contacts = () => {
                     </span>
                   </div>
                   <button
-                    className="p-4"
-                    style={{ backgroundColor: 'rgb(13, 59, 102)' }}
+                    className="w-max bg-blue_dark p-2 text-white hover:bg-blue_light"
                     type="button"
-                    // onClick={() => {
-                    //   setIsActiveOrderForm(true)
-                    // }}
+                    onClick={() => {
+                      setIsActiveOrderForm(true)
+                    }}
                   >
                     Оставить заявку
                   </button>
