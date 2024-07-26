@@ -16,7 +16,7 @@ const OrderForm: React.FC<IOrderForm> = ({ isActiveOrderForm, setIsActiveOrderFo
     if (!isActiveOrderForm && (isSuccess || isError)) {
       setIsActiveSendModal((i) => !i)
     }
-  }, [isActiveOrderForm, isSuccess, isError])
+  }, [isSuccess, isError])
 
   useEffect(() => {
     if (isLoading) {
@@ -42,7 +42,7 @@ const OrderForm: React.FC<IOrderForm> = ({ isActiveOrderForm, setIsActiveOrderFo
           setIsActiveSendModal(false)
         }}
       >
-        {isSuccess && !isError ? (
+        {isSuccess ? (
           <div className="flex flex-col justify-center gap-2 text-lg">
             <span>Ваше сообщение отправлено!</span>
             <span>В ближайшее время с вами свяжется наш специалист.</span>
@@ -61,4 +61,4 @@ const OrderForm: React.FC<IOrderForm> = ({ isActiveOrderForm, setIsActiveOrderFo
   )
 }
 
-export default React.memo (OrderForm)
+export default React.memo(OrderForm)

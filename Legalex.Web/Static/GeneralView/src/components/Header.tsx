@@ -22,16 +22,32 @@ const headers: IHeaderLink[] = [
         link: '/services/legal',
       },
       {
+        title: 'Антикризисное управление',
+        link: '/services/crisisManagement',
+      },
+      {
+        title: 'Медиация',
+        link: '/services/mediation',
+      },
+      {
         title: 'HR услуги',
         link: '/services/hr',
       },
       {
-        title: 'Услуги экономиста',
-        link: '/services/economy',
+        title: 'Услуги кадрового специалиста',
+        link: '/services/hrSupport',
       },
       {
-        title: 'Бухгалтерские услуги',
-        link: '/services/accounting',
+        title: 'Охрана труда',
+        link: '/services/occupationalSafetyAndHealth',
+      },
+      {
+        title: 'Защита персональных данных',
+        link: '/services/protectionOfPersonalInformation',
+      },
+      {
+        title: 'Услуги экономиста',
+        link: '/services/economy',
       },
     ],
   },
@@ -169,7 +185,6 @@ const Header = () => {
                   {headers.map((link) => {
                     if (link.link.length) {
                       if (!link.sublinks) {
-                        console.log(link.title)
                         return (
                           <Link
                             key={link.title}
@@ -185,7 +200,6 @@ const Header = () => {
                         )
                       } else {
                         const markup = link.sublinks.map((item) => {
-                          // console.log(item.title)
                           return (
                             <Link
                               key={item.title}
@@ -197,7 +211,6 @@ const Header = () => {
                           )
                         })
 
-                        console.log(link.title)
                         return (
                           <div key={link.title} className="hover-target relative flex flex-col">
                             <Link
@@ -246,7 +259,6 @@ const Header = () => {
                   <div className="container">
                     <div className="flex flex-col items-center gap-2 pt-8 text-2xl text-white">
                       {headers.map((link) => {
-                        console.log(link.title)
                         return (
                           <Link
                             key={link.title}

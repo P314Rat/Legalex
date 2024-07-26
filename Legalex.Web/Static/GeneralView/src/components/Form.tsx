@@ -80,10 +80,13 @@ const Form = ({ selectService, sendFeedback, isError, isSuccess, isLoading }: IF
           <option value="">Выберите специалиста</option>
           <option value="0">Не могу выбрать специалиста</option>
           <option value="1">Юридические услуги</option>
-          <option value="2">Услуги экономиста</option>
-          <option value="3">Бухгалтерские услуги</option>
-          <option value="4">Услуги специалистра по кадрам</option>
-          <option value="5">HR - услуги</option>
+          <option value="2">Антикризисное управление</option>
+          <option value="3">Медиация</option>
+          <option value="4">HR услуги</option>
+          <option value="5">Услуги кадрового специалиста</option>
+          <option value="6">Охрана труда</option>
+          <option value="7">Защита персональных данных</option>
+          <option value="8">Услуги экономиста</option>
         </select>
         {isLegal ? (
           <input

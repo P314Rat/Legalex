@@ -9,19 +9,39 @@ const list = [
     caption: 'Юридические услуги',
   },
   {
-    id: 'hr',
+    id: 'crisisManagement',
     preview_image: '/images/service2.webp',
+    caption: 'Антикризисное управление',
+  },
+  {
+    id: 'mediation',
+    preview_image: '/images/service3.webp',
+    caption: 'Медиация',
+  },
+  {
+    id: 'hr',
+    preview_image: '/images/service4.webp',
     caption: 'HR-услуги',
   },
   {
-    id: 'economy',
-    preview_image: '/images/service3.webp',
-    caption: 'Услуги экономиста',
+    id: 'hrSupport',
+    preview_image: '/images/service2.webp',
+    caption: 'Услуги кадрового специалиста',
   },
   {
-    id: 'accounting',
+    id: 'occupationalSafetyAndHealth',
     preview_image: '/images/service4.webp',
-    caption: 'Бухгалтерские услуги',
+    caption: 'Охрана труда',
+  },
+  {
+    id: 'protectionOfPersonalInformation',
+    preview_image: '/images/service3.webp',
+    caption: 'Защита персональных данных',
+  },
+  {
+    id: 'economy',
+    preview_image: '/images/service1.webp',
+    caption: 'Услуги экономиста',
   },
 ]
 

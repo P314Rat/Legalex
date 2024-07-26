@@ -1,15 +1,16 @@
-﻿using Legalex.Logic.DataTransferObjects;
-using Legalex.Logic.Requests.DataManagement.Adding;
+﻿using Legalex.BLL.BusinessProcesses.AddOrder;
+using Legalex.BLL.BusinessProcesses.SendNotification;
+using Legalex.BLL.DTO;
+using Legalex.Web.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
-using System.Text.Json.Nodes;
+
 
 namespace Legalex.Web.Controllers.API
 {
     public class OrderController : BaseApiController
     {
-        private IMediator _mediator;
+        private readonly IMediator _mediator;
 
 
         public OrderController(IMediator mediator)
@@ -17,32 +18,57 @@ namespace Legalex.Web.Controllers.API
             _mediator = mediator;
         }
 
-        public override async Task<IActionResult> Add(JsonObject? model)
+        public override async Task<IActionResult> Post(OrderViewModel model)
         {
-            if (model == null || JsonSerializer.Serialize(model) == string.Empty)
-                return BadRequest("Model is empty");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Model isn't valid");
+            }
 
-            var ModelDTO = model.Deserialize<OrderDTO>();
+            var order = new OrderDTO
+            {
+                Type = model.Type,
+                Service = model.Service,
+                Email = model.Email,
+                Name = model.Name,
+                Phone = model.Phone,
+                Description = model.Description
+            };
 
-            if (ModelDTO == null)
-                return BadRequest("Model is invalid");
+            try
+            {
+                await _mediator.Send(new AddOrderCommand(order));
+            }
+            catch
+            {
+                return BadRequest("Failed to create order");
+            }
 
-            await _mediator.Send(new AddOrderRequest(ModelDTO));
+            try
+            {
+                await _mediator.Send(new SendNotificationCommand(order));
+            }
+            catch
+            {
+                return BadRequest($"Failed to send notification");
+            }
 
-            return Ok("Order added");
+            return Ok();
         }
 
-        public override async Task<IActionResult> Get(string? id)
+        public override async Task<IActionResult> Get(int id)
         {
-            if (id == null || id == string.Empty)
-                return Ok("Get all action");
-
-            return Ok("Get action");
+            throw new NotImplementedException();
         }
 
-        public override async Task<IActionResult> Delete(string? id)
+        public override Task<IActionResult> Update(OrderViewModel model)
         {
-            return Ok("Delete action");
+            throw new NotImplementedException();
+        }
+
+        public override async Task<IActionResult> Delete(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Legalex.Web.Services;
+﻿using Legalex.BLL.DTO;
+using Legalex.BLL.Services;
+
 
 namespace Legalex.Web
 {
@@ -6,16 +8,33 @@ namespace Legalex.Web
     {
         private IConfiguration Configuration { get; }
 
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddMediatR(config => config.RegisterServicesFromAssemblyContaining(typeof(Logic.Services.ServiceProvider)));
-            services.AddInfrastructureServices();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+            });
+            services.AddApplicationDbContext(Configuration["ConnectionStrings:DefaultConnection"]);
+            services.AddUnitOfWork();
+            services.AddMediatR(config => config.RegisterServicesFromAssembly(typeof(OrderDTO).Assembly));
+            services.AddTelegramService(Configuration["TelegramMessaging:ChatId"],
+                Configuration["TelegramMessaging:TelegramToken"]);
         }
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -28,6 +47,7 @@ namespace Legalex.Web
                 app.UseExceptionHandler("/Error");
             }
 
+            app.UseCors("AllowAll");
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
@@ -36,9 +56,6 @@ namespace Legalex.Web
                     pattern: "{controller}/{action}/{id?}");
             });
             app.UseHttpsRedirection();
-            app.UseCors(corsPolicyBuilder => corsPolicyBuilder.AllowAnyOrigin()
-                                                              .AllowAnyMethod()
-                                                              .AllowAnyHeader());
         }
     }
 }

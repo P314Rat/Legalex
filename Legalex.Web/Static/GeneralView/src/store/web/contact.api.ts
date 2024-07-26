@@ -2,12 +2,12 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { IContacts } from '../../modules/contact'
 
 const HOST = 'legalex.by'
-//process.env.REACT_APP_HOST
 
 export const contactApi = createApi({
   reducerPath: 'contactApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: `https://api.${HOST}/`,
+    // baseUrl: `https://api.${HOST}/`,
+    baseUrl: `https://localhost:7179/`,
   }),
 
   endpoints: (builder) => ({

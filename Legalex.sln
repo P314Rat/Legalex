@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Legalex.Web", "Legalex.Web\Legalex.Web.csproj", "{BA2791B3-B956-44AB-80F5-4B937AF44D55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Legalex.Web", "Legalex.Web\Legalex.Web.csproj", "{BA2791B3-B956-44AB-80F5-4B937AF44D55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Legalex.Infrastructure", "Legalex.Infrastructure\Legalex.Infrastructure.csproj", "{62F527D2-15BB-4AC3-83FB-91970BC37A86}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Legalex.DAL", "Legalex.DAL\Legalex.DAL.csproj", "{C9B9710D-4A48-4405-B979-EF2FF2411BF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Legalex.Logic", "Legalex.Logic\Legalex.Logic.csproj", "{FD7F7FBB-EA04-4837-A16D-B62CDD38B450}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Legalex.BLL", "Legalex.BLL\Legalex.BLL.csproj", "{4BE1C5A4-A466-48E4-9C35-E635125FEF47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{BA2791B3-B956-44AB-80F5-4B937AF44D55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA2791B3-B956-44AB-80F5-4B937AF44D55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA2791B3-B956-44AB-80F5-4B937AF44D55}.Release|Any CPU.Build.0 = Release|Any CPU
-		{62F527D2-15BB-4AC3-83FB-91970BC37A86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62F527D2-15BB-4AC3-83FB-91970BC37A86}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{62F527D2-15BB-4AC3-83FB-91970BC37A86}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62F527D2-15BB-4AC3-83FB-91970BC37A86}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD7F7FBB-EA04-4837-A16D-B62CDD38B450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD7F7FBB-EA04-4837-A16D-B62CDD38B450}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD7F7FBB-EA04-4837-A16D-B62CDD38B450}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD7F7FBB-EA04-4837-A16D-B62CDD38B450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9B9710D-4A48-4405-B979-EF2FF2411BF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9B9710D-4A48-4405-B979-EF2FF2411BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9B9710D-4A48-4405-B979-EF2FF2411BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9B9710D-4A48-4405-B979-EF2FF2411BF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BE1C5A4-A466-48E4-9C35-E635125FEF47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BE1C5A4-A466-48E4-9C35-E635125FEF47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BE1C5A4-A466-48E4-9C35-E635125FEF47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BE1C5A4-A466-48E4-9C35-E635125FEF47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

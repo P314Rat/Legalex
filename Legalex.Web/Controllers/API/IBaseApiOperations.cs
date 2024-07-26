@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Text.Json.Nodes;
+﻿using Legalex.Web.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace Legalex.Web.Controllers.API
 {
     internal interface IBaseApiOperations
     {
-        public Task<IActionResult> Add(JsonObject model);
-        public Task<IActionResult> Get(string id);
-        public Task<IActionResult> Delete(string id);
+        public Task<IActionResult> Post(OrderViewModel model);
+        public Task<IActionResult> Get(int id);
+        public Task<IActionResult> Update(OrderViewModel model);
+        public Task<IActionResult> Delete(int id);
     }
 }
