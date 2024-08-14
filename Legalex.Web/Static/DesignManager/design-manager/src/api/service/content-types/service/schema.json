@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "services",
+  "info": {
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "Service",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ServiceCard": {
+      "type": "component",
+      "repeatable": false,
+      "component": "services.service-card"
+    },
+    "tabs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tab.tab",
+      "mappedBy": "service"
+    },
+    "Title": {
+      "type": "string"
+    }
+  }
+}
