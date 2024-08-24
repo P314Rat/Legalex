@@ -5,6 +5,7 @@ import { useSendFeedbackMutation } from '../store/web/contact.api'
 import Modal from './Modal'
 import Form from './Form'
 import OrderForm from './OrderForm'
+import { useGetAllServiceLinksQuery } from '../store/web/strapi.api'
 
 interface IHeaderLink {
   title: string
@@ -12,43 +13,43 @@ interface IHeaderLink {
   sublinks?: { title: string; link: string }[]
 }
 
-const headers: IHeaderLink[] = [
+let headers: IHeaderLink[] = [
   {
     title: 'Услуги',
     link: '/services',
     sublinks: [
-      {
-        title: 'Юридические услуги',
-        link: '/services/legal',
-      },
-      {
-        title: 'Антикризисное управление',
-        link: '/services/crisisManagement',
-      },
-      {
-        title: 'Медиация',
-        link: '/services/mediation',
-      },
-      {
-        title: 'HR услуги',
-        link: '/services/hr',
-      },
-      {
-        title: 'Услуги кадрового специалиста',
-        link: '/services/hrSupport',
-      },
-      {
-        title: 'Охрана труда',
-        link: '/services/occupationalSafetyAndHealth',
-      },
-      {
-        title: 'Защита персональных данных',
-        link: '/services/protectionOfPersonalInformation',
-      },
-      {
-        title: 'Услуги экономиста',
-        link: '/services/economy',
-      },
+      // {
+      //   title: 'Юридические услуги',
+      //   link: '/services/legal',
+      // },
+      // {
+      //   title: 'Антикризисное управление',
+      //   link: '/services/crisisManagement',
+      // },
+      // {
+      //   title: 'Медиация',
+      //   link: '/services/mediation',
+      // },
+      // {
+      //   title: 'HR услуги',
+      //   link: '/services/hr',
+      // },
+      // {
+      //   title: 'Услуги кадрового специалиста',
+      //   link: '/services/hrSupport',
+      // },
+      // {
+      //   title: 'Охрана труда',
+      //   link: '/services/occupationalSafetyAndHealth',
+      // },
+      // {
+      //   title: 'Защита персональных данных',
+      //   link: '/services/protectionOfPersonalInformation',
+      // },
+      // {
+      //   title: 'Услуги экономиста',
+      //   link: '/services/economy',
+      // },
     ],
   },
   { title: 'О нас', link: '/#About' },
@@ -67,7 +68,15 @@ const Header = () => {
   const [filling, setFilling] = useState(0)
   const resize = useResize()
   const location = useLocation()
+  const { data } = useGetAllServiceLinksQuery('')
+  const sublinks = data?.data.map((item) => {
+    return {
+      title: item.attributes.Title,
+      link: '/services/' + item.attributes.ServiceCard.Link,
+    }
+  })
 
+  headers[headers.findIndex((item) => item.title === 'Услуги')].sublinks = sublinks
   useEffect(() => {
     const hoverTargets = document.querySelectorAll('.hover-target')
 
@@ -96,7 +105,7 @@ const Header = () => {
         target.removeEventListener('mouseout', handleMouseOut)
       })
     }
-  }, [])
+  }, [sublinks])
 
   useEffect(() => {
     document.onscroll = () => {

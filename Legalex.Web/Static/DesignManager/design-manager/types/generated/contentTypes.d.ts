@@ -362,72 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiServiceService extends Schema.CollectionType {
-  collectionName: 'services';
-  info: {
-    singularName: 'service';
-    pluralName: 'services';
-    displayName: 'Service';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    ServiceCard: Attribute.Component<'services.service-card'>;
-    tabs: Attribute.Relation<
-      'api::service.service',
-      'oneToMany',
-      'api::tab.tab'
-    >;
-    Title: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::service.service',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::service.service',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiTabTab extends Schema.CollectionType {
-  collectionName: 'tabs';
-  info: {
-    singularName: 'tab';
-    pluralName: 'tabs';
-    displayName: 'Tab';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Title: Attribute.String;
-    Tables: Attribute.Component<'services.table', true>;
-    Trailer: Attribute.Text;
-    service: Attribute.Relation<
-      'api::tab.tab',
-      'manyToOne',
-      'api::service.service'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::tab.tab', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::tab.tab', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -854,6 +788,114 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiServiceService extends Schema.CollectionType {
+  collectionName: 'services';
+  info: {
+    singularName: 'service';
+    pluralName: 'services';
+    displayName: '\u0423\u0441\u043B\u0443\u0433\u0438';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    ServiceCard: Attribute.Component<'services.service-card'>;
+    Title: Attribute.String;
+    Description: Attribute.RichText;
+    Meta: Attribute.String;
+    TabTitle: Attribute.String;
+    Tabs: Attribute.Relation<
+      'api::service.service',
+      'oneToMany',
+      'api::tab.tab'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::service.service',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::service.service',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSlideSlide extends Schema.CollectionType {
+  collectionName: 'slides';
+  info: {
+    singularName: 'slide';
+    pluralName: 'slides';
+    displayName: 'Slide';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Description: Attribute.Text;
+    ButtonText: Attribute.String;
+    Slide: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Service: Attribute.Relation<
+      'api::slide.slide',
+      'oneToOne',
+      'api::service.service'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::slide.slide',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::slide.slide',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTabTab extends Schema.CollectionType {
+  collectionName: 'tabs';
+  info: {
+    singularName: 'tab';
+    pluralName: 'tabs';
+    displayName: 'Tab';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Tables: Attribute.Component<'services.table', true> & Attribute.Required;
+    Trailer: Attribute.Text;
+    Service: Attribute.Relation<
+      'api::tab.tab',
+      'manyToOne',
+      'api::service.service'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::tab.tab', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::tab.tab', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -864,8 +906,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::service.service': ApiServiceService;
-      'api::tab.tab': ApiTabTab;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -874,6 +914,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::service.service': ApiServiceService;
+      'api::slide.slide': ApiSlideSlide;
+      'api::tab.tab': ApiTabTab;
     }
   }
 }

@@ -4,7 +4,7 @@
   "info": {
     "singularName": "service",
     "pluralName": "services",
-    "displayName": "Service",
+    "displayName": "Услуги",
     "description": ""
   },
   "options": {
@@ -17,14 +17,23 @@
       "repeatable": false,
       "component": "services.service-card"
     },
-    "tabs": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "richtext"
+    },
+    "Meta": {
+      "type": "string"
+    },
+    "TabTitle": {
+      "type": "string"
+    },
+    "Tabs": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::tab.tab",
-      "mappedBy": "service"
-    },
-    "Title": {
-      "type": "string"
+      "mappedBy": "Service"
     }
   }
 }

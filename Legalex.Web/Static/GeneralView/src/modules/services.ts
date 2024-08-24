@@ -1,22 +1,35 @@
-import { IMediaData } from "."
+import { IMediaData } from '.'
 
 export interface IService {
   createdAt: string
   updatedAt: string
   publishedAt: string
   Title: string
+  TabTitle: string
+  Meta: string
   ServiceCard: IServiceCard
-  tabs: ITabData
+  Tabs: ITabData
+  Description: any
+}
+
+export interface ISlide {
+  Description: string
+  ButtonText: string
+  Slide: IMediaData
 }
 
 export interface IServiceCard {
   id: number
   Link: string
-  Description: any
   CardBackground: IMediaData
 }
 
 export interface ITab {
+  id: number
+  attributes: ITabAttributes
+}
+
+export interface ITabAttributes {
   Title: string
   Trailer: any
   createdAt: string
@@ -37,6 +50,6 @@ export interface IRow {
   Price: string
 }
 
-export interface ITabData{
-    data: ITab[]
+export interface ITabData {
+  data: ITab[]
 }

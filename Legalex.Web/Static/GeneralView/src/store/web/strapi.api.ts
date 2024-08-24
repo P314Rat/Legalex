@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { IContacts } from '../../modules/contact'
 import { ICollectionRoot } from '../../modules'
-import { IService } from '../../modules/services'
+import { IService, ISlide } from '../../modules/services'
 
 //@ts-ignore
 const STRAPI_HOST = process.env.REACT_APP_STRAPI_HOST
@@ -17,12 +17,36 @@ export const strapiApi = createApi({
   }),
 
   endpoints: (builder) => ({
-    getServices: builder.query<ICollectionRoot<IService>, string>({
+    getServiceSlides: builder.query<ICollectionRoot<ISlide>, string>({
       query: () => ({
-        url: 'services?populate=ServiceCard.CardBackground&populate=tabs.Tables.Row',
+        url: 'slides?populate=Slide',
+      }),
+    }),
+    getServiceNames: builder.query<ICollectionRoot<IService>, string>({
+      query: () => ({
+        url: 'services?fields=Title',
+      }),
+    }),
+    getAllServiceLinks: builder.query<ICollectionRoot<IService>, string>({
+      query: () => ({
+        url: 'services?populate=ServiceCard',
+      }),
+    }),
+    getAllServiceCards: builder.query<ICollectionRoot<IService>, string>({
+      query: () => ({
+        url: 'services?populate=ServiceCard.CardBackground',
+      }),
+    }),
+    getService: builder.query<ICollectionRoot<IService>, string>({
+      query: (id) => ({
+        url: `services?populate=Tabs.Tables.Row&filters[ServiceCard][Link][$eq]=${id}`,
       }),
     }),
   }),
 })
 
-export const { useGetServicesQuery } = strapiApi
+export const { useGetServiceSlidesQuery } = strapiApi
+export const { useGetServiceNamesQuery } = strapiApi
+export const { useGetAllServiceLinksQuery } = strapiApi
+export const { useGetAllServiceCardsQuery } = strapiApi
+export const { useGetServiceQuery } = strapiApi

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
-import Modal from './Modal'
-import { useSendFeedbackMutation } from '../store/web/contact.api'
 import { IContacts } from '../modules/contact'
+import { useGetServiceNamesQuery, useGetServiceQuery } from '../store/web/strapi.api'
 
 export interface IForm {
   selectService?: number
@@ -12,9 +11,11 @@ export interface IForm {
 }
 
 const Form = ({ selectService, sendFeedback, isError, isSuccess, isLoading }: IForm) => {
+  const { data } = useGetServiceNamesQuery('')
   const [isLegal, setIsLegal] = useState(true)
-
   const formRef = useRef<HTMLFormElement>(null)
+
+  const services = data?.data.map((item) => item.attributes.Title)
 
   useEffect(() => {
     if (isError || isSuccess) {
@@ -77,16 +78,21 @@ const Form = ({ selectService, sendFeedback, isError, isSuccess, isLoading }: IF
           }}
           className="border-2 border-white bg-blue_light/40 px-1 py-2 text-lg text-white opacity-80 !outline-none placeholder:text-white/90 valid:border-blue_light hover:opacity-100 focus-visible:rounded-none active:opacity-100 md:px-3 md:py-4 lg:col-span-2"
         >
-          <option value="">Выберите специалиста</option>
-          <option value="0">Не могу выбрать специалиста</option>
-          <option value="1">Юридические услуги</option>
+          <option value="">Выберите тип услуги</option>
+          <option value="0">Не могу выбрать услугу</option>
+          {services?.map((item, index) => (
+            <option key={index} value={index + 1}>
+              {item}
+            </option>
+          ))}
+          {/* <option value="1">Юридические услуги</option>
           <option value="2">Антикризисное управление</option>
           <option value="3">Медиация</option>
           <option value="4">HR услуги</option>
           <option value="5">Услуги кадрового специалиста</option>
           <option value="6">Охрана труда</option>
           <option value="7">Защита персональных данных</option>
-          <option value="8">Услуги экономиста</option>
+          <option value="8">Услуги экономиста</option> */}
         </select>
         {isLegal ? (
           <input

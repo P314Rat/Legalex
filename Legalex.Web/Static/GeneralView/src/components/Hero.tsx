@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Navigation, Pagination } from 'swiper'
 import 'swiper/css'
@@ -6,40 +6,75 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import Modal from './Modal'
 import Form from './Form'
+import { useGetServiceSlidesQuery } from '../store/web/strapi.api'
+import { Description } from '@headlessui/react/dist/components/description/description'
+import { ISlide } from '../modules/services'
 
-const heroes = [
-  {
-    image: '/images/hero1.webp',
-    caption:
-      'Мы здесь, чтобы оказать вам юридическую помощь и обеспечить вашу уверенность в завтрашнем дне',
-    helpCaption: 'Получить помощь юрисконсульта',
-    type: 1,
-  },
-  {
-    image: '/images/hero2.webp',
-    caption:
-      'Мы здесь, чтобы помочь вам подобрать персонал, создавая команду, на которую можно положиться',
-    helpCaption: 'Получить помощь HR-менеджера',
-    type: 2,
-  },
-  {
-    image: '/images/hero3.webp',
-    caption: 'Мы здесь, чтобы оказать вам консультацию экономиста и помочь вам развить свой бизнес',
-    helpCaption: 'Получить помощь экономиста',
-    type: 3,
-  },
-  {
-    image: '/images/hero4.webp',
-    caption:
-      'Мы здесь, чтобы оказать вам бухгалтерскую консультацию и обеспечить ваше финансовое благополучие',
-    helpCaption: 'Получить помощь бухгалтера',
-    type: 4,
-  },
-]
+interface IHero {
+  image: string
+  caption: string
+  helpCaption: string
+  type: number
+}
+
+let heroes: IHero[] = []
+
+// let heroes: IHero[] = [
+//   // {
+//   //   image: '/images/hero1.webp',
+//   //   caption:
+//   //     'Мы здесь, чтобы оказать вам юридическую помощь и обеспечить вашу уверенность в завтрашнем дне',
+//   //   helpCaption: 'Получить помощь юрисконсульта',
+//   //   type: 1,
+//   // },
+//   // {
+//   //   image: '/images/hero2.webp',
+//   //   caption:
+//   //     'Мы здесь, чтобы помочь вам подобрать персонал, создавая команду, на которую можно положиться',
+//   //   helpCaption: 'Получить помощь HR-менеджера',
+//   //   type: 2,
+//   // },
+//   // {
+//   //   image: '/images/hero3.webp',
+//   //   caption: 'Мы здесь, чтобы оказать вам консультацию экономиста и помочь вам развить свой бизнес',
+//   //   helpCaption: 'Получить помощь экономиста',
+//   //   type: 3,
+//   // },
+//   // {
+//   //   image: '/images/hero4.webp',
+//   //   caption:
+//   //     'Мы здесь, чтобы оказать вам бухгалтерскую консультацию и обеспечить ваше финансовое благополучие',
+//   //   helpCaption: 'Получить помощь бухгалтера',
+//   //   type: 4,
+//   // },
+// ]
 
 const Hero = () => {
   const [isActiveModal, setIsActiveModal] = useState(false)
   const [selectType, setSelectType] = useState(0)
+  const { data } = useGetServiceSlidesQuery('')
+
+  const result = data?.data.map((item, index) => {
+    return {
+      caption: item.attributes.Description,
+      helpCaption: item.attributes.ButtonText,
+      image: `${process.env.REACT_APP_STRAPI_HOST}${item.attributes.Slide.data.attributes.url}`,
+      type: index + 1,
+    }
+  })
+
+  if (result) {
+    heroes = result
+  }
+
+  // useEffect(() => {
+  //   if (result) {
+  //     heroes = result
+  //   }
+  // }, [result])
+
+  // console.log(data)
+  // console.log(heroes)
 
   return (
     <>

@@ -9,7 +9,7 @@ const Services = () => {
   if (slug !== undefined && typeof slug === 'string') {
     return (
       <>
-        <Service content={{ id: slug }} />
+        <Service id={slug} />
       </>
     )
   }

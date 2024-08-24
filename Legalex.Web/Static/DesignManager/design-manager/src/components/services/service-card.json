@@ -20,9 +20,6 @@
     },
     "Link": {
       "type": "string"
-    },
-    "Description": {
-      "type": "richtext"
     }
   }
 }

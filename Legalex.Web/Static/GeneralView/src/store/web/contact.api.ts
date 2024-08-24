@@ -1,20 +1,20 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { IContacts } from '../../modules/contact'
 
-const HOST = 'legalex.by'
-
 export const contactApi = createApi({
   reducerPath: 'contactApi',
   baseQuery: fetchBaseQuery({
-    // baseUrl: `https://api.${HOST}/`,
-    baseUrl: `https://localhost:7179/`,
+    // baseUrl: `https://localhost:7179/`,
+    // baseUrl:
+    //   process.env.NODE_ENV === 'production'
+    //     ? `https://api.legalex.by`
+    //     : 'https://localhost:7179/',
+    baseUrl: process.env.REACT_APP_BASE_URL,
   }),
 
   endpoints: (builder) => ({
     sendFeedback: builder.mutation({
       query: (body: IContacts) => {
-        console.log(body)
-
         return {
           url: 'order',
           method: 'POST',

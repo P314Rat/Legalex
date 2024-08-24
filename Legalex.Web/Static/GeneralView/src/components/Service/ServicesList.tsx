@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import ServiceCard from './ServiceCard'
-import { useGetServicesQuery } from '../../store/web/strapi.api'
+import { useGetAllServiceCardsQuery } from '../../store/web/strapi.api'
 
 // const list = [
 //   {
@@ -47,10 +47,7 @@ import { useGetServicesQuery } from '../../store/web/strapi.api'
 // ]
 
 const ServicesList = () => {
-  const { data } = useGetServicesQuery('')
-  useEffect(() => {
-    console.log(data)
-  }, [data])
+  const { data } = useGetAllServiceCardsQuery('')
 
   return (
     <>
@@ -72,10 +69,6 @@ const ServicesList = () => {
             для вас и вашего бизнеса
           </h3>
           <div className="mt-16 grid grid-cols-1 gap-12 sm:grid-cols-1 md:grid-cols-2 2xl:grid-cols-3">
-            {/* {data.map((service) => {
-              return <ServiceCard key={service.id} {...service} />
-            })} */}
-
             {data?.data.map((service, index) => {
               return (
                 <ServiceCard

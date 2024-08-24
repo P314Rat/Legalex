@@ -21,7 +21,7 @@ export interface ServicesTabRow extends Schema.Component {
     description: '';
   };
   attributes: {
-    Description: Attribute.String;
+    Description: Attribute.Text;
     Price: Attribute.String;
   };
 }
@@ -36,7 +36,6 @@ export interface ServicesServiceCard extends Schema.Component {
   attributes: {
     CardBackground: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     Link: Attribute.String;
-    Description: Attribute.RichText;
   };
 }
 

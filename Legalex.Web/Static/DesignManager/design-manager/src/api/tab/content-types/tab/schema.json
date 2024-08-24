@@ -4,7 +4,8 @@
   "info": {
     "singularName": "tab",
     "pluralName": "tabs",
-    "displayName": "Tab"
+    "displayName": "Tab",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,16 +18,17 @@
     "Tables": {
       "type": "component",
       "repeatable": true,
-      "component": "services.table"
+      "component": "services.table",
+      "required": true
     },
     "Trailer": {
       "type": "text"
     },
-    "service": {
+    "Service": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::service.service",
-      "inversedBy": "tabs"
+      "inversedBy": "Tabs"
     }
   }
 }

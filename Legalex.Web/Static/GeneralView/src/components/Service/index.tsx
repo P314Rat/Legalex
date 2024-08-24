@@ -1,22 +1,30 @@
 import { Disclosure } from '@headlessui/react'
 import clsx from 'clsx'
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { getService } from '../../libs/utils/get-service'
 import { Helmet } from 'react-helmet-async'
+import { useGetServiceQuery } from '../../store/web/strapi.api'
 
-export interface IService {
+export interface IServiceProps {
   id: string
 }
 
-const Service = ({ content }: { content: IService }) => {
-  const service_ = getService(content.id)
+const Service: React.FC<IServiceProps> = ({ id }) => {
+  const service_ = getService(id)
+  const { data } = useGetServiceQuery(id)
+  const service = {
+    Title: data?.data[0].attributes.Title,
+    TabTitle: data?.data[0].attributes.TabTitle,
+    Meta: data?.data[0].attributes.Meta,
+    Tabs: data?.data[0].attributes.Tabs.data.map((item) => item.attributes),
+    Description: data?.data[0].attributes.Description,
+  }
 
   return (
     <>
       <Helmet>
-        <meta name="description" content={service_?.meta.description} />
-        <title>{service_?.meta.title}</title>
+        <meta name="description" content={service?.Meta} />
+        <title>{service?.TabTitle}</title>
       </Helmet>
       <section id="Service" className="relative mb-8 mt-8 flex justify-center p-4 md:mt-16">
         <div className="container relative">
@@ -26,14 +34,14 @@ const Service = ({ content }: { content: IService }) => {
           >
             Вернуться к списку услуг
           </Link>
-          <h1 className="text-xl text-blue_light lg:ml-[0.17rem]">{service_?.title}</h1>
+          <h1 className="text-xl text-blue_light lg:ml-[0.17rem]">{service?.Title}</h1>
           <h3
             className="mb-16 text-2xl sm:text-4xl lg:text-6xl"
-            dangerouslySetInnerHTML={{ __html: service_?.caption! }}
+            dangerouslySetInnerHTML={{ __html: service?.Description! }}
           />
-          {service_?.services.map((item, index) => {
+          {service?.Tabs?.map((item, index) => {
             return (
-              <Disclosure key={item.caption} defaultOpen={index === 0}>
+              <Disclosure key={item.Title} defaultOpen={index === 0}>
                 {({ open }) => (
                   <>
                     <Disclosure.Button
@@ -44,7 +52,7 @@ const Service = ({ content }: { content: IService }) => {
                         'mb-2 flex w-full justify-between px-4 py-2 text-left text-lg text-white transition-all duration-300 focus:outline-none'
                       )}
                     >
-                      <span>{item.caption}</span>
+                      <span>{item.Title}</span>
                       {open ? (
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -78,30 +86,30 @@ const Service = ({ content }: { content: IService }) => {
                       )}
                     </Disclosure.Button>
                     <Disclosure.Panel className="text mb-4 px-4 pb-2 pt-4 text-gray-900">
-                      {item.tables.map((tableH) => {
+                      {item.Tables.map((tableH) => {
                         return (
-                          <div key={tableH.title}>
-                            <span className="font-medium">{tableH.title}</span>
+                          <div key={tableH.Title}>
+                            <span className="font-medium">{tableH.Title}</span>
                             <table className="mb-2 w-full">
                               <tbody>
-                                {tableH.rows.map((row, index) => {
+                                {tableH.Row.map((row, index) => {
                                   return (
                                     <tr
                                       className="w-full border-b border-blue_dark"
-                                      key={row.caption + index}
+                                      key={row.Description + index}
                                     >
-                                      {row.caption && (
+                                      {row.Description && (
                                         <td
                                           className="w-3/4 border-r border-blue_dark p-2"
-                                          dangerouslySetInnerHTML={{ __html: row.caption! }}
+                                          dangerouslySetInnerHTML={{ __html: row.Description! }}
                                           rowSpan={
-                                            tableH.rows[index + 1]?.caption === ''
-                                              ? tableH.rows.length
+                                            tableH.Row[index + 1]?.Description === ''
+                                              ? tableH.Row.length
                                               : 1
                                           }
                                         />
                                       )}
-                                      <td className="w-1/4 p-2">{row.price}</td>
+                                      <td className="w-1/4 p-2">{row.Price}</td>
                                     </tr>
                                   )
                                 })}
@@ -110,7 +118,7 @@ const Service = ({ content }: { content: IService }) => {
                           </div>
                         )
                       })}
-                      <span className="font-medium">{item.description}</span>
+                      <span className="font-medium">{item.Trailer}</span>
                     </Disclosure.Panel>
                   </>
                 )}
