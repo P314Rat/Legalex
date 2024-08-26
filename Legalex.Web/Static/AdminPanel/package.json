@@ -1,33 +1,46 @@
 {
   "name": "admin-panel",
   "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview",
-    "type-check": "tsc --noEmit",
-    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx ./src",
-    "format": "prettier --write ./src"
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi",
+    "deploy": "strapi deploy"
   },
   "dependencies": {
-    "ra-data-json-server": "^4.16.0",
-    "react": "^18.2.0",
-    "react-admin": "^4.16.0",
-    "react-dom": "^18.2.0"
+    "@strapi/design-system": "^1.19.0",
+    "@strapi/helper-plugin": "^4.25.8",
+    "@strapi/icons": "^1.19.0",
+    "@strapi/plugin-cloud": "4.25.7",
+    "@strapi/plugin-i18n": "4.25.7",
+    "@strapi/plugin-seo": "^1.9.9",
+    "@strapi/plugin-users-permissions": "4.25.7",
+    "@strapi/strapi": "4.25.7",
+    "@types/react": "^18.3.4",
+    "@types/react-dom": "^18.3.0",
+    "pg": "8.8.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "5.3.4",
+    "strapi-plugin-email-designer": "^2.2.1",
+    "strapi-plugin-menus": "^1.6.1",
+    "strapi-plugin-preview-button": "^2.2.2",
+    "strapi-plugin-sitemap": "^3.2.0",
+    "styled-components": "^5.3.3",
+    "typescript": "^5.5.4"
   },
-  "devDependencies": {
-    "@types/node": "^18.19.33",
-    "@types/react": "^18.0.22",
-    "@types/react-dom": "^18.0.7",
-    "@typescript-eslint/eslint-plugin": "^5.60.1",
-    "@typescript-eslint/parser": "^5.60.1",
-    "@vitejs/plugin-react": "^4.0.1",
-    "eslint": "^8.43.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "^2.8.8",
-    "typescript": "^5.1.6",
-    "vite": "^4.3.9"
-  }
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "863c4df8-1e5b-4f15-9df8-2a5bc6967274"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
 }
