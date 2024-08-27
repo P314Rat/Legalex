@@ -39,9 +39,9 @@ namespace Legalex.Web.Controllers.API
             {
                 await _mediator.Send(new AddOrderCommand(order));
             }
-            catch
+            catch (Exception ex)
             {
-                return BadRequest("Failed to create order");
+                return BadRequest(ex.Message);
             }
 
             try
