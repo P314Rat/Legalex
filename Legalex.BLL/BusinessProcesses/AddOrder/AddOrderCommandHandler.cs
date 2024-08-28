@@ -34,7 +34,7 @@ namespace Legalex.BLL.BusinessProcesses.AddOrder
             }
             catch
             {
-                throw new Exception("Failed to create order: " + order.Email);
+                throw new Exception("Failed to create order: " + order);
             }
 
             return Task.CompletedTask;
