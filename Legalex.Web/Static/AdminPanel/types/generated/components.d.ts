@@ -1,44 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface ServicesTable extends Schema.Component {
-  collectionName: 'components_services_tables';
-  info: {
-    displayName: 'Table';
-    icon: 'bulletList';
-    description: '';
-  };
-  attributes: {
-    Row: Attribute.Component<'services.tab-row', true>;
-    Title: Attribute.String;
-  };
-}
-
-export interface ServicesTabRow extends Schema.Component {
-  collectionName: 'components_services_tab_rows';
-  info: {
-    displayName: 'TabRow';
-    icon: 'bulletList';
-    description: '';
-  };
-  attributes: {
-    Description: Attribute.Text;
-    Price: Attribute.String;
-  };
-}
-
-export interface ServicesServiceCard extends Schema.Component {
-  collectionName: 'components_services_service_cards';
-  info: {
-    displayName: 'ServiceCard';
-    icon: 'grid';
-    description: '';
-  };
-  attributes: {
-    CardBackground: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    Link: Attribute.String;
-  };
-}
-
 export interface SharedSeo extends Schema.Component {
   collectionName: 'components_shared_seos';
   info: {
@@ -90,14 +51,53 @@ export interface SharedMetaSocial extends Schema.Component {
   };
 }
 
+export interface ServicesTable extends Schema.Component {
+  collectionName: 'components_services_tables';
+  info: {
+    displayName: 'Table';
+    icon: 'bulletList';
+    description: '';
+  };
+  attributes: {
+    Row: Attribute.Component<'services.tab-row', true>;
+    Title: Attribute.String;
+  };
+}
+
+export interface ServicesTabRow extends Schema.Component {
+  collectionName: 'components_services_tab_rows';
+  info: {
+    displayName: 'TabRow';
+    icon: 'bulletList';
+    description: '';
+  };
+  attributes: {
+    Description: Attribute.Text;
+    Price: Attribute.String;
+  };
+}
+
+export interface ServicesServiceCard extends Schema.Component {
+  collectionName: 'components_services_service_cards';
+  info: {
+    displayName: 'ServiceCard';
+    icon: 'grid';
+    description: '';
+  };
+  attributes: {
+    CardBackground: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Link: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'shared.seo': SharedSeo;
+      'shared.meta-social': SharedMetaSocial;
       'services.table': ServicesTable;
       'services.tab-row': ServicesTabRow;
       'services.service-card': ServicesServiceCard;
-      'shared.seo': SharedSeo;
-      'shared.meta-social': SharedMetaSocial;
     }
   }
 }
