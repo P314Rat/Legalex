@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "services",
+  "info": {
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "Услуги",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ServiceCard": {
+      "type": "component",
+      "repeatable": false,
+      "component": "services.service-card"
+    },
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "richtext"
+    },
+    "Meta": {
+      "type": "string"
+    },
+    "TabTitle": {
+      "type": "string"
+    },
+    "Tabs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tab.tab",
+      "mappedBy": "Service"
+    }
+  }
+}

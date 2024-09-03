@@ -1,0 +1,46 @@
+version: '3.8'
+services:
+  database:
+    image: r314pat/admin_panel_database:latest
+    container_name: postgre_db
+    build:
+      context: ./db_service/
+      dockerfile: Dockerfile
+    # volumes:
+    #   - ./db_service/db_backups:/docker-entrypoint-initdb.d
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready --dbname=legalex_admin_panel_db --username=legalexs_admin"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  
+  strapi:
+    image: r314pat/admin_panel_app:latest
+    container_name: strapi_container
+    build:
+      context: ./strapi_service/
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_HOST: postgre_db
+      NODE_ENV: production
+    # ports:
+    #   - "1337:1337"
+    depends_on:
+      database:
+        condition: service_healthy
+  
+  nginx:
+    image: r314pat/admin_panel_reverse_proxy:latest
+    container_name: nginx_container
+    build:
+      context: ./nginx_service/
+      dockerfile: Dockerfile
+    # volumes:
+    #   - ./nginx_service/nginx.conf:/etc/nginx/nginx.conf
+    #   - ./nginx_service/cert:/etc/nginx/ssl
+    ports:
+      - "443:443"
+    depends_on:
+      - strapi

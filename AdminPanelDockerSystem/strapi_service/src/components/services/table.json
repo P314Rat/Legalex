@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_services_tables",
+  "info": {
+    "displayName": "Table",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Row": {
+      "type": "component",
+      "repeatable": true,
+      "component": "services.tab-row"
+    },
+    "Title": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_services_tab_rows",
+  "info": {
+    "displayName": "TabRow",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Description": {
+      "type": "text"
+    },
+    "Price": {
+      "type": "string"
+    }
+  }
+}
