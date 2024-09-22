@@ -1,7 +1,7 @@
 {
   "collectionName": "components_services_service_cards",
   "info": {
-    "displayName": "ServiceCard",
+    "displayName": "Карточка услуги",
     "icon": "grid",
     "description": ""
   },

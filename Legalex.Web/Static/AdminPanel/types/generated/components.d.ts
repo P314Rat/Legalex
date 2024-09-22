@@ -54,7 +54,7 @@ export interface SharedMetaSocial extends Schema.Component {
 export interface ServicesTable extends Schema.Component {
   collectionName: 'components_services_tables';
   info: {
-    displayName: 'Table';
+    displayName: '\u0422\u0430\u0431\u043B\u0438\u0446\u0430';
     icon: 'bulletList';
     description: '';
   };
@@ -67,7 +67,7 @@ export interface ServicesTable extends Schema.Component {
 export interface ServicesTabRow extends Schema.Component {
   collectionName: 'components_services_tab_rows';
   info: {
-    displayName: 'TabRow';
+    displayName: '\u0421\u0442\u0440\u043E\u043A\u0430 \u0442\u0430\u0431\u043B\u0438\u0446\u044B';
     icon: 'bulletList';
     description: '';
   };
@@ -80,7 +80,7 @@ export interface ServicesTabRow extends Schema.Component {
 export interface ServicesServiceCard extends Schema.Component {
   collectionName: 'components_services_service_cards';
   info: {
-    displayName: 'ServiceCard';
+    displayName: '\u041A\u0430\u0440\u0442\u043E\u0447\u043A\u0430 \u0443\u0441\u043B\u0443\u0433\u0438';
     icon: 'grid';
     description: '';
   };

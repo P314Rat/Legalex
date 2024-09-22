@@ -1063,6 +1063,7 @@ export interface ApiServiceService extends Schema.CollectionType {
       'oneToMany',
       'api::tab.tab'
     >;
+    Priority: Attribute.Integer & Attribute.Required & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1089,7 +1090,7 @@ export interface ApiSlideSlide extends Schema.CollectionType {
   info: {
     singularName: 'slide';
     pluralName: 'slides';
-    displayName: 'Slide';
+    displayName: '\u0421\u043B\u0430\u0439\u0434';
     description: '';
   };
   options: {
@@ -1104,6 +1105,7 @@ export interface ApiSlideSlide extends Schema.CollectionType {
       'oneToOne',
       'api::service.service'
     >;
+    Priority: Attribute.Integer & Attribute.Required & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1130,7 +1132,7 @@ export interface ApiTabTab extends Schema.CollectionType {
   info: {
     singularName: 'tab';
     pluralName: 'tabs';
-    displayName: 'Tab';
+    displayName: '\u0412\u043A\u043B\u0430\u0434\u043A\u0430';
     description: '';
   };
   options: {

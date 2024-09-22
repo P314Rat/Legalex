@@ -4,7 +4,7 @@
   "info": {
     "singularName": "slide",
     "pluralName": "slides",
-    "displayName": "Slide",
+    "displayName": "Слайд",
     "description": ""
   },
   "options": {
@@ -33,6 +33,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::service.service"
+    },
+    "Priority": {
+      "type": "integer",
+      "required": true,
+      "unique": true
     }
   }
 }

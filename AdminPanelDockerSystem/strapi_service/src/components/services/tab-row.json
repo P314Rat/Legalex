@@ -1,7 +1,7 @@
 {
   "collectionName": "components_services_tab_rows",
   "info": {
-    "displayName": "TabRow",
+    "displayName": "Строка таблицы",
     "icon": "bulletList",
     "description": ""
   },

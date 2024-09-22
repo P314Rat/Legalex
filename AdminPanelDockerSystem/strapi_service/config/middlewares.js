@@ -3,12 +3,12 @@ module.exports = [
   'strapi::errors',
   'strapi::security',
   'strapi::cors',
-  {
-    name: 'strapi::cors',
-    config: {
-      origin: ['http://localhost:3000', 'https://legalex.by'],
-    },
-  },
+  // {
+  //   name: 'strapi::cors',
+  //   config: {
+  //     origin: ['http://localhost:3000', 'https://legalex.by'],
+  //   },
+  // },
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',

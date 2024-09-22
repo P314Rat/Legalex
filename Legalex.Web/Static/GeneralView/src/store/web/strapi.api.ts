@@ -21,6 +21,12 @@ export const strapiApi = createApi({
       query: () => ({
         url: 'slides?populate=Slide',
       }),
+      transformResponse: (response: ICollectionRoot<ISlide>) => {
+        return {
+          ...response,
+          data: response.data.sort((a, b) => a.attributes.Priority - b.attributes.Priority),
+        }
+      },
     }),
     getServiceNames: builder.query<ICollectionRoot<IService>, string>({
       query: () => ({
@@ -31,11 +37,23 @@ export const strapiApi = createApi({
       query: () => ({
         url: 'services?populate=ServiceCard',
       }),
+      transformResponse: (response: ICollectionRoot<IService>) => {
+        return {
+          ...response,
+          data: response.data.sort((a, b) => a.attributes.Priority - b.attributes.Priority),
+        }
+      },
     }),
     getAllServiceCards: builder.query<ICollectionRoot<IService>, string>({
       query: () => ({
         url: 'services?populate=ServiceCard.CardBackground',
       }),
+      transformResponse: (response: ICollectionRoot<IService>) => {
+        return {
+          ...response,
+          data: response.data.sort((a, b) => a.attributes.Priority - b.attributes.Priority),
+        }
+      },
     }),
     getService: builder.query<ICollectionRoot<IService>, string>({
       query: (id) => ({

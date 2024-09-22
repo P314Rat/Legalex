@@ -10,18 +10,21 @@ export interface IService {
   ServiceCard: IServiceCard
   Tabs: ITabData
   Description: any
+  Priority: number
 }
 
 export interface ISlide {
   Description: string
   ButtonText: string
   Slide: IMediaData
+  Priority: number
 }
 
 export interface IServiceCard {
   id: number
   Link: string
   CardBackground: IMediaData
+  Priority: number
 }
 
 export interface ITab {
