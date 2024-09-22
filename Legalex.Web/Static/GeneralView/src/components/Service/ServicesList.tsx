@@ -47,7 +47,7 @@ import { useGetAllServiceCardsQuery } from '../../store/web/strapi.api'
 // ]
 
 const ServicesList = () => {
-  const { data } = useGetAllServiceCardsQuery('')
+  const { data, isLoading, isError, isSuccess, error } = useGetAllServiceCardsQuery('')
 
   return (
     <>
@@ -79,6 +79,11 @@ const ServicesList = () => {
                 />
               )
             })}
+            {isLoading && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-25 backdrop-blur-[5px]">
+                <div className="h-24 w-24 animate-spin rounded-full border-8 border-solid border-blue_light border-t-transparent"></div>
+              </div>
+            )}
           </div>
         </div>
       </section>

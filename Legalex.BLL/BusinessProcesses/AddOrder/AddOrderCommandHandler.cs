@@ -21,9 +21,8 @@ namespace Legalex.BLL.BusinessProcesses.AddOrder
             {
                 Type = command.Type,
                 Service = command.Service,
-                Email = command.Email,
                 Name = command.Name,
-                Phone = command.Phone,
+                Phone = command.Contact,
                 Description = command.Description
             };
 

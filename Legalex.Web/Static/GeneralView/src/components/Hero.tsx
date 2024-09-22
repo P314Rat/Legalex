@@ -111,7 +111,6 @@ const Hero = () => {
                   </div>
                   <div className="container h-full">
                     <div className="relative flex h-full w-full flex-col justify-center p-4 text-white">
-                      <span className="text-6xl uppercase md:text-8xl">LegaLex</span>
                       <div className="mt-8 flex flex-col gap-4">
                         <span className="text-4xl md:text-6xl">{hero.caption}</span>
                         <button

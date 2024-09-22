@@ -51,15 +51,14 @@ namespace Legalex.BLL.BusinessProcesses.SendNotification
             }
 
             var type = command.Type == Entity.Legal ? "Юридическое лицо" : "Физическое лицо";
-            var email = command.Email != null ? $"\n\n*Электронная почта:* {command.Email}" : string.Empty;
 
             try
             {
                 await _sender.SendAsync(
                 $"*Тип заявки:*  {type}\n\n" +
-                $"*Тип услуги:* {service}\n\n" +
-                $"*Имя:* {command.Name}\n\n" +
-                $"*Номер телефона:* " + $"{command.Phone}{email}\n\n" +
+                $"*Тип услуги:*  {service}\n\n" +
+                $"*Имя:*  {command.Name}\n\n" +
+                $"*Контакт:*  " + $"{command.Contact}\n\n" +
                 $"*Описание:*  {command.Description}");
             }
             catch

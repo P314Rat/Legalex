@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { IContacts } from '../modules/contact'
-import { useGetServiceNamesQuery, useGetServiceQuery } from '../store/web/strapi.api'
+import { useGetServiceNamesQuery } from '../store/web/strapi.api'
 
 export interface IForm {
   selectService?: number
@@ -12,7 +12,8 @@ export interface IForm {
 
 const Form = ({ selectService, sendFeedback, isError, isSuccess, isLoading }: IForm) => {
   const { data } = useGetServiceNamesQuery('')
-  const [isLegal, setIsLegal] = useState(true)
+  const [isLegal, setIsLegal] = useState(false)
+  const [isPolicyShown, setIsPolicyShown] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
 
   const services = data?.data.map((item) => item.attributes.Title)
@@ -27,7 +28,7 @@ const Form = ({ selectService, sendFeedback, isError, isSuccess, isLoading }: IF
     <>
       <form
         ref={formRef}
-        className="grid gap-4 lg:col-span-3 lg:grid-cols-4 lg:gap-8"
+        className="grid grid-cols-1 gap-4 lg:col-span-3 lg:grid-cols-4 lg:gap-8"
         id="ContactsForm"
         onSubmit={(e) => {
           e.preventDefault()
@@ -36,7 +37,7 @@ const Form = ({ selectService, sendFeedback, isError, isSuccess, isLoading }: IF
             //@ts-ignore
             name: e.currentTarget.elements.name.value,
             //@ts-ignore
-            phone: e.currentTarget.elements.phone.value,
+            contact: e.currentTarget.elements.contact.value,
             //@ts-ignore
             type: parseInt(e.currentTarget.elements.type.value),
             //@ts-ignore
@@ -57,11 +58,12 @@ const Form = ({ selectService, sendFeedback, isError, isSuccess, isLoading }: IF
           }}
           onChange={(e) => {
             setIsLegal(e.currentTarget.selectedIndex === 1 ? true : false)
+            setIsPolicyShown(e.currentTarget.selectedIndex === 2 ? true : false)
             e.currentTarget.setCustomValidity('')
           }}
           className="border-2 border-white bg-blue_light/40 px-1 py-2 text-lg text-white opacity-80 !outline-none placeholder:text-white/90 valid:border-blue_light hover:opacity-100 focus-visible:rounded-none active:opacity-100 md:px-3 md:py-4 lg:col-span-2"
         >
-          <option value="">Выберите тип лица</option>
+          <option value="">Кто Вы?</option>
           <option value="0">Юридическое лицо</option>
           <option value="1">Физическое лицо</option>
         </select>
@@ -78,25 +80,17 @@ const Form = ({ selectService, sendFeedback, isError, isSuccess, isLoading }: IF
           }}
           className="border-2 border-white bg-blue_light/40 px-1 py-2 text-lg text-white opacity-80 !outline-none placeholder:text-white/90 valid:border-blue_light hover:opacity-100 focus-visible:rounded-none active:opacity-100 md:px-3 md:py-4 lg:col-span-2"
         >
-          <option value="">Выберите тип услуги</option>
-          <option value="0">Не могу выбрать услугу</option>
+          <option value="">Тип услуги</option>
+          <option value="0">Не могу выбрать тип услуги</option>
           {services?.map((item, index) => (
             <option key={index} value={index + 1}>
               {item}
             </option>
           ))}
-          {/* <option value="1">Юридические услуги</option>
-          <option value="2">Антикризисное управление</option>
-          <option value="3">Медиация</option>
-          <option value="4">HR услуги</option>
-          <option value="5">Услуги кадрового специалиста</option>
-          <option value="6">Охрана труда</option>
-          <option value="7">Защита персональных данных</option>
-          <option value="8">Услуги экономиста</option> */}
         </select>
         {isLegal ? (
           <input
-            placeholder="Название юридического лица"
+            placeholder="Наименование юридического лица"
             id="name"
             name="name"
             onInvalid={(e) => {
@@ -111,7 +105,7 @@ const Form = ({ selectService, sendFeedback, isError, isSuccess, isLoading }: IF
           />
         ) : (
           <input
-            placeholder="Имя"
+            placeholder="Как к Вам обращаться?"
             id="name"
             name="name"
             type="text"
@@ -127,42 +121,17 @@ const Form = ({ selectService, sendFeedback, isError, isSuccess, isLoading }: IF
           />
         )}
         <input
-          placeholder="Телефон"
-          type="tel"
-          id="phone"
-          name="phone"
-          //pattern="[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
-          maxLength={12}
-          // onKeyDown={(e) => {
-          //   if (e.key === 'Backspace') {
-          //     setIsBackspacePressed(true)
-          //   } else {
-          //     setIsBackspacePressed(false)
-          //   }
-          // }}
-          // onInput={(e) => {
-          //   if (isBackspacePressed) return
-
-          //   const inputStr = e.currentTarget.value
-          //   e.currentTarget.setCustomValidity('')
-
-          //   if (inputStr.length === 3 || inputStr.length === 7 || inputStr.length === 10) {
-          //     const str =
-          //       inputStr.substring(0, inputStr.length - 1) + '-' + inputStr[inputStr.length - 1]
-          //     e.currentTarget.value = str
-          //   }
-          // }}
-          // onChange={(e) => {}}
+          placeholder="Телефон или e-mail"
+          type="text"
+          id="contact"
+          name="contact"
+          maxLength={20}
           required
-          onInvalid={(e) => {
-            e.currentTarget.classList.add('invalid:border-rose-500')
-            e.currentTarget.setCustomValidity('Телефон не указан')
-          }}
           className="border-2 border-white bg-blue_light/40 px-1 py-2 text-lg text-white opacity-80 !outline-none placeholder:text-white/90 valid:border-blue_light hover:opacity-100 focus-visible:rounded-none active:opacity-100 md:px-3 md:py-4 lg:col-span-2"
         />
 
         <textarea
-          placeholder="Опишите вашу проблему"
+          placeholder="Опишите Вашу проблему"
           id="message"
           required
           onInvalid={(e) => {
@@ -174,7 +143,7 @@ const Form = ({ selectService, sendFeedback, isError, isSuccess, isLoading }: IF
           }}
           className="min-h-[160px] border-2 border-white bg-blue_light/40 px-1 py-2 text-lg text-white opacity-80 !outline-none  placeholder:text-white/90 valid:border-blue_light hover:opacity-100 focus-visible:rounded-none active:opacity-100 md:min-h-[320px] md:px-3 md:py-4 lg:col-span-4"
         />
-        {!isLegal && (
+        {!isLegal && isPolicyShown && (
           <div className="flex gap-2 lg:col-span-4">
             <input type="checkbox" id="personaldata" name="personaldata" required />
             <label htmlFor="personaldata">

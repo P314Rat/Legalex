@@ -2,6 +2,6 @@ export interface IContacts {
   type: number
   service: number
   name: string
-  phone: string
+  contact: string
   description: string
 }

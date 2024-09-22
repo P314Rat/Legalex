@@ -20,7 +20,10 @@ const OrderForm: React.FC<IOrderForm> = ({ isActiveOrderForm, setIsActiveOrderFo
 
   useEffect(() => {
     if (isLoading) {
+      console.log('loading start')
       setIsActiveOrderForm(false)
+    } else {
+      console.log('loading stop')
     }
   }, [isLoading])
 
@@ -45,7 +48,7 @@ const OrderForm: React.FC<IOrderForm> = ({ isActiveOrderForm, setIsActiveOrderFo
         {isSuccess ? (
           <div className="flex flex-col justify-center gap-2 text-lg">
             <span>Ваше сообщение отправлено!</span>
-            <span>В ближайшее время с вами свяжется наш специалист.</span>
+            <span>В ближайшее время с Вами свяжется наш специалист.</span>
           </div>
         ) : (
           <div className="flex flex-col justify-center gap-2 text-lg">
@@ -57,6 +60,11 @@ const OrderForm: React.FC<IOrderForm> = ({ isActiveOrderForm, setIsActiveOrderFo
           </div>
         )}
       </Modal>
+      {isLoading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-25 backdrop-blur-[5px]">
+          <div className="h-24 w-24 animate-spin rounded-full border-8 border-solid border-blue_light border-t-transparent"></div>
+        </div>
+      )}
     </>
   )
 }

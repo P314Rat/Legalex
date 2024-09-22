@@ -29,9 +29,8 @@ namespace Legalex.Web.Controllers.API
             {
                 Type = model.Type,
                 Service = model.Service,
-                Email = model.Email,
                 Name = model.Name,
-                Phone = model.Phone,
+                Contact = model.Contact,
                 Description = model.Description
             };
 

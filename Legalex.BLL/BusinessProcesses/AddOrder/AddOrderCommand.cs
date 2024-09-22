@@ -9,9 +9,8 @@ namespace Legalex.BLL.BusinessProcesses.AddOrder
     {
         public Entity Type { get; set; }
         public Service Service { get; set; }
-        public string? Email { get; set; } = null;
         public string Name { get; set; }
-        public string Phone { get; set; }
+        public string Contact { get; set; }
         public string Description { get; set; }
 
 
@@ -20,7 +19,7 @@ namespace Legalex.BLL.BusinessProcesses.AddOrder
             Type = model.Type;
             Service = model.Service;
             Name = model.Name;
-            Phone = model.Phone;
+            Contact = model.Contact;
             Description = model.Description;
         }
     }

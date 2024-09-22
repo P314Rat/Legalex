@@ -11,7 +11,7 @@ export interface IServiceProps {
 
 const Service: React.FC<IServiceProps> = ({ id }) => {
   const service_ = getService(id)
-  const { data } = useGetServiceQuery(id)
+  const { data, isLoading, isError, isSuccess, error } = useGetServiceQuery(id)
   const service = {
     Title: data?.data[0].attributes.Title,
     TabTitle: data?.data[0].attributes.TabTitle,
@@ -125,6 +125,11 @@ const Service: React.FC<IServiceProps> = ({ id }) => {
               </Disclosure>
             )
           })}
+          {isLoading && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-25 backdrop-blur-[5px]">
+              <div className="h-24 w-24 animate-spin rounded-full border-8 border-solid border-blue_light border-t-transparent"></div>
+            </div>
+          )}
         </div>
       </section>
     </>
