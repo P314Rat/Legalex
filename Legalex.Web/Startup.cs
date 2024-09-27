@@ -16,7 +16,7 @@ namespace Legalex.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddMvc();
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll",
@@ -53,7 +53,7 @@ namespace Legalex.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller}/{action}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
             app.UseHttpsRedirection();
         }
