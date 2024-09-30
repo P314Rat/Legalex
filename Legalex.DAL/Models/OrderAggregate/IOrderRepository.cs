@@ -4,6 +4,5 @@
     {
         Order? GetById(int id);
         void DeleteById(int id);
-
     }
 }

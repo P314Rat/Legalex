@@ -1,4 +1,5 @@
-﻿using Legalex.DAL.Models.OrderAggregate;
+﻿using Legalex.DAL.Models.CaseAggregate;
+using Legalex.DAL.Models.OrderAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -19,7 +20,7 @@ namespace Legalex.DAL.Storage.Repositories
             var entry = _dbContext?.Orders?.Add(item);
 
             if (entry == null || entry.State != EntityState.Added)
-                throw new InvalidOperationException("Order was not added to the database");
+                throw new InvalidOperationException("Order was not created");
         }
 
         public void Delete(Order item)
@@ -27,24 +28,22 @@ namespace Legalex.DAL.Storage.Repositories
             var entry = _dbContext?.Orders?.Remove(item);
 
             if (entry == null || entry.State != EntityState.Deleted)
-                throw new InvalidOperationException("Order was not deleted from the database");
+                throw new InvalidOperationException("Order was not deleted");
         }
-
         public void DeleteAll()
         {
             throw new NotImplementedException();
         }
-
         public void DeleteById(int id)
         {
-            var item = _dbContext?.Orders?.FirstOrDefault(x => x.Id == id);
-            EntityEntry<Order>? entry = null;
+            var item = _dbContext?.Cases?.FirstOrDefault(x => x.Id == id);
+            EntityEntry<Case>? entry = null;
 
             if (item != null)
-                entry = _dbContext?.Orders?.Remove(item);
+                entry = _dbContext?.Cases?.Remove(item);
 
             if (entry == null || entry.State != EntityState.Deleted)
-                throw new InvalidOperationException("Order was not found in the database");
+                throw new InvalidOperationException("Order was not found");
         }
 
         public void DeleteById(string id)

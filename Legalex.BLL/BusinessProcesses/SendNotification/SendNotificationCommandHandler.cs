@@ -1,5 +1,6 @@
 ﻿using Legalex.BLL.Services.TelegramService;
 using Legalex.DAL.Models.OrderAggregate;
+using Legalex.DAL.Models.UserAggregate;
 using MediatR;
 
 
@@ -50,7 +51,7 @@ namespace Legalex.BLL.BusinessProcesses.SendNotification
                     break;
             }
 
-            var type = command.Type == Entity.Legal ? "Юридическое лицо" : "Физическое лицо";
+            var type = command.ClientType == ClientType.Legal ? "Юридическое лицо" : "Физическое лицо";
 
             try
             {

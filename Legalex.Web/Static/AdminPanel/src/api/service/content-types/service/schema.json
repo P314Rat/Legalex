@@ -34,11 +34,6 @@
       "relation": "oneToMany",
       "target": "api::tab.tab",
       "mappedBy": "Service"
-    },
-    "Priority": {
-      "type": "integer",
-      "required": true,
-      "unique": true
     }
   }
 }

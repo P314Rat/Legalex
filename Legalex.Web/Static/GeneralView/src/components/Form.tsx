@@ -63,7 +63,7 @@ const Form = ({ selectService, sendFeedback, isError, isSuccess, isLoading }: IF
           }}
           className="border-2 border-white bg-blue_light/40 px-1 py-2 text-lg text-white opacity-80 !outline-none placeholder:text-white/90 valid:border-blue_light hover:opacity-100 focus-visible:rounded-none active:opacity-100 md:px-3 md:py-4 lg:col-span-2"
         >
-          <option value="">Кто Вы?</option>
+          <option value="">Выберите тип лица</option>
           <option value="0">Юридическое лицо</option>
           <option value="1">Физическое лицо</option>
         </select>
@@ -80,7 +80,7 @@ const Form = ({ selectService, sendFeedback, isError, isSuccess, isLoading }: IF
           }}
           className="border-2 border-white bg-blue_light/40 px-1 py-2 text-lg text-white opacity-80 !outline-none placeholder:text-white/90 valid:border-blue_light hover:opacity-100 focus-visible:rounded-none active:opacity-100 md:px-3 md:py-4 lg:col-span-2"
         >
-          <option value="">Тип услуги</option>
+          <option value="">Выберите тип услуги</option>
           <option value="0">Не могу выбрать тип услуги</option>
           {services?.map((item, index) => (
             <option key={index} value={index + 1}>
@@ -105,7 +105,7 @@ const Form = ({ selectService, sendFeedback, isError, isSuccess, isLoading }: IF
           />
         ) : (
           <input
-            placeholder="Как к Вам обращаться?"
+            placeholder="Ваше имя"
             id="name"
             name="name"
             type="text"
@@ -121,7 +121,7 @@ const Form = ({ selectService, sendFeedback, isError, isSuccess, isLoading }: IF
           />
         )}
         <input
-          placeholder="Телефон или e-mail"
+          placeholder="Ваш телефон или e-mail"
           type="text"
           id="contact"
           name="contact"
@@ -164,7 +164,7 @@ const Form = ({ selectService, sendFeedback, isError, isSuccess, isLoading }: IF
           type="submit"
           className="w-full border-2 border-white bg-blue_dark/40 px-1 py-2 text-lg text-white transition-all duration-300 hover:border-blue_light md:px-3 md:py-4 lg:col-span-4"
         >
-          Свяжитесь со мной
+          Отправить заявку
         </button>
       </form>
     </>

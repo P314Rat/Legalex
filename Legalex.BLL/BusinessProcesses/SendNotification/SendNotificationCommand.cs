@@ -1,5 +1,6 @@
 ﻿using Legalex.BLL.DTO;
 using Legalex.DAL.Models.OrderAggregate;
+using Legalex.DAL.Models.UserAggregate;
 using MediatR;
 
 
@@ -7,7 +8,7 @@ namespace Legalex.BLL.BusinessProcesses.SendNotification
 {
     public class SendNotificationCommand : IRequest
     {
-        public Entity Type { get; set; }
+        public ClientType ClientType { get; set; }
         public Service Service { get; set; }
         public string Name { get; set; }
         public string Contact { get; set; }
@@ -16,7 +17,7 @@ namespace Legalex.BLL.BusinessProcesses.SendNotification
 
         public SendNotificationCommand(OrderDTO model)
         {
-            Type = model.Type;
+            ClientType = model.ClientType;
             Service = model.Service;
             Name = model.Name;
             Contact = model.Contact;

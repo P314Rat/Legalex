@@ -1,11 +1,11 @@
 ﻿using Legalex.DAL.Models.OrderAggregate;
-
+using Legalex.DAL.Models.UserAggregate;
 
 namespace Legalex.BLL.DTO
 {
     public class OrderDTO
     {
-        public Entity Type { get; set; }
+        public ClientType ClientType { get; set; }
         public Service Service { get; set; }
         public string Name { get; set; }
         public string Contact { get; set; }

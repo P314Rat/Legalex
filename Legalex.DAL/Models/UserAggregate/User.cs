@@ -1,11 +1,14 @@
-﻿//namespace Legalex.Infrastructure.Domain
-//{
-//    public abstract class User
-//    {
-//        public Guid Id { get; set; } //primary key
-//        public string Login { get; set; } //non nullable
-//        public string FirstName { get; set; } //non nullable
-//        public string? LastName { get; set; } //nullable
-//        public string? SurName { get; set; } //nullable
-//    }
-//}
+﻿namespace Legalex.DAL.Models.UserAggregate
+{
+    public abstract class User
+    {
+        public Guid Id { get; set; }
+        public string? Email { get; set; } = null;
+        public string? Phone { get; set; } = null;
+        public string PasswordHash { get; set; } = string.Empty;
+        public string PasswordSalt { get; set; } = string.Empty;
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public string? SurName { get; set; } = null;
+    }
+}

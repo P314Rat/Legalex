@@ -115,59 +115,68 @@ const Header = () => {
 
   const Contacts = () => {
     return (
-      <div className="hidden flex-col items-center gap-1 lg:flex">
-        <a href="tel:+375447905525" className="underline-offset-2 hover:underline">
-          +375 (44) 790-55-25
+      <div className="flex items-center divide-x-2 divide-gray-300">
+        <a href={process.env.REACT_APP_BASE_URL + '/account/login'} className="h-12 w-12 flex-col pr-2 hover:bg-blue_light/50">
+          <img
+            src="/images/login.svg"
+            alt="telegram"
+            className="relative left-2/4 top-2/4 h-8 w-8 -translate-x-2/4 -translate-y-2/4"
+          />
         </a>
-        <div className="flex gap-2">
-          <a
-            href="https://t.me/Lega_Lex"
-            target={'_blank'}
-            rel="noreferrer"
-            className="relative h-8 w-8 rounded-full border border-white hover:bg-blue_light/50"
-          >
-            <img
-              src="/images/telegram.svg"
-              alt="telegram"
-              className="absolute left-2/4 top-2/4 h-5 w-5 -translate-x-2/4 -translate-y-2/4"
-            />
+        <div className="hidden flex-col items-center gap-1 pl-2 lg:flex">
+          <a href="tel:+375447905525" className="underline-offset-2 hover:underline">
+            +375 (44) 790-55-25
           </a>
-          <a
-            href="viber://chat?number=%2B375447905525"
-            target={'_blank'}
-            rel="noreferrer"
-            className="relative h-8 w-8 rounded-full border border-white hover:bg-blue_light/50"
-          >
-            <img
-              src="/images/viber.svg"
-              alt="telegram"
-              className="absolute left-2/4 top-2/4 h-5 w-5 -translate-x-2/4 -translate-y-2/4"
-            />
-          </a>
-          <a
-            href="https://wa.me/375447905525"
-            target={'_blank'}
-            rel="noreferrer"
-            className="relative h-8 w-8 rounded-full border border-white hover:bg-blue_light/50"
-          >
-            <img
-              src="/images/whatsapp.svg"
-              alt="telegram"
-              className="absolute left-2/4 top-2/4 h-5 w-5 -translate-x-2/4 -translate-y-2/4"
-            />
-          </a>
-          <a
-            href="https://www.instagram.com/m/lega.lex/"
-            target={'_blank'}
-            rel="noreferrer"
-            className="relative h-8 w-8 rounded-full border border-white hover:bg-blue_light/50"
-          >
-            <img
-              src="/images/instagram.svg"
-              alt="telegram"
-              className="absolute left-2/4 top-2/4 h-5 w-5 -translate-x-2/4 -translate-y-2/4"
-            />
-          </a>
+          <div className="flex gap-2">
+            <a
+              href="https://t.me/Lega_Lex"
+              target={'_blank'}
+              rel="noreferrer"
+              className="relative h-8 w-8 rounded-full border border-white hover:bg-blue_light/50"
+            >
+              <img
+                src="/images/telegram.svg"
+                alt="telegram"
+                className="absolute left-2/4 top-2/4 h-5 w-5 -translate-x-2/4 -translate-y-2/4"
+              />
+            </a>
+            <a
+              href="viber://chat?number=%2B375447905525"
+              target={'_blank'}
+              rel="noreferrer"
+              className="relative h-8 w-8 rounded-full border border-white hover:bg-blue_light/50"
+            >
+              <img
+                src="/images/viber.svg"
+                alt="telegram"
+                className="absolute left-2/4 top-2/4 h-5 w-5 -translate-x-2/4 -translate-y-2/4"
+              />
+            </a>
+            <a
+              href="https://wa.me/375447905525"
+              target={'_blank'}
+              rel="noreferrer"
+              className="relative h-8 w-8 rounded-full border border-white hover:bg-blue_light/50"
+            >
+              <img
+                src="/images/whatsapp.svg"
+                alt="telegram"
+                className="absolute left-2/4 top-2/4 h-5 w-5 -translate-x-2/4 -translate-y-2/4"
+              />
+            </a>
+            <a
+              href="https://www.instagram.com/m/lega.lex/"
+              target={'_blank'}
+              rel="noreferrer"
+              className="relative h-8 w-8 rounded-full border border-white hover:bg-blue_light/50"
+            >
+              <img
+                src="/images/instagram.svg"
+                alt="telegram"
+                className="absolute left-2/4 top-2/4 h-5 w-5 -translate-x-2/4 -translate-y-2/4"
+              />
+            </a>
+          </div>
         </div>
       </div>
     )

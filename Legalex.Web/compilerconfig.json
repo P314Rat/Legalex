@@ -1,0 +1,14 @@
+﻿[
+  {
+    "outputFile": "Static/Styles/_Header.css",
+    "inputFile": "Views/Shared/_Header.scss"
+  },
+  {
+    "outputFile": "Static/Styles/_FunctionalPanel.css",
+    "inputFile": "Views/Shared/_FunctionalPanel.scss"
+  },
+  {
+    "outputFile": "Static/Styles/Login.css",
+    "inputFile": "Views/Account/Login.scss"
+  }
+]

@@ -1063,7 +1063,6 @@ export interface ApiServiceService extends Schema.CollectionType {
       'oneToMany',
       'api::tab.tab'
     >;
-    Priority: Attribute.Integer & Attribute.Required & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1147,6 +1146,7 @@ export interface ApiTabTab extends Schema.CollectionType {
       'manyToOne',
       'api::service.service'
     >;
+    Priority: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

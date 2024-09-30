@@ -19,10 +19,11 @@ namespace Legalex.BLL.BusinessProcesses.AddOrder
         {
             var order = new Order
             {
-                Type = command.Type,
+                CreatedAt = DateTime.Now,
+                ClientType = command.ClientType,
                 Service = command.Service,
                 Name = command.Name,
-                Phone = command.Contact,
+                Contact = command.Contact,
                 Description = command.Description
             };
 
@@ -33,7 +34,7 @@ namespace Legalex.BLL.BusinessProcesses.AddOrder
             }
             catch
             {
-                throw new Exception("Failed to create order: " + order);
+                throw new Exception("Failed to create order");
             }
 
             return Task.CompletedTask;

@@ -1,11 +1,7 @@
-﻿namespace Legalex.DAL.Models.OrderAggregate
-{
-    public enum Entity
-    {
-        Legal,
-        Physical
-    }
+﻿using Legalex.DAL.Models.UserAggregate;
 
+namespace Legalex.DAL.Models.OrderAggregate
+{
     public enum Service
     {
         NonSelected,
@@ -22,11 +18,11 @@
     public class Order
     {
         public int Id { get; set; }
-        public Entity Type { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public ClientType ClientType { get; set; }
         public Service Service { get; set; }
-        public string? Email { get; set; } = null;
-        public string Name { get; set; } = string.Empty;
-        public string Phone { get; set; } = string.Empty;
-        public string? Description { get; set; } = null;
+        public string Name { get; set; }
+        public string Contact { get; set; }
+        public string Description { get; set; }
     }
 }

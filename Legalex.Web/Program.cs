@@ -10,6 +10,7 @@ namespace Legalex.Web
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseWebRoot("Static");
                     webBuilder.UseStartup<Startup>();
                 });
     }

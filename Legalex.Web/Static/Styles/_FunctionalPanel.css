@@ -1,0 +1,40 @@
+﻿@charset "UTF-8";
+.f_panel {
+  min-width: 20rem;
+  min-height: 45rem;
+  margin-right: 1rem;
+  background-color: white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem 1rem;
+}
+.f_panel .profile {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  margin-bottom: 0.5rem;
+}
+.f_panel .profile img {
+  position: absolute; /* Абсолютное позиционирование */
+  left: 50%; /* Смещение на 50% от левой границы родителя */
+  top: 50%; /* Смещение на 50% от верхней границы родителя */
+  height: 96px; /* Высота 1.25rem */
+  width: 96px; /* Ширина 1.25rem */
+  transform: translate(-50%, -50%);
+}
+.f_panel .name {
+  margin-bottom: 2rem;
+}
+.f_panel .button {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  padding-left: 2rem;
+}
+.f_panel .exit {
+  margin-top: auto;
+  margin-bottom: 1rem;
+}

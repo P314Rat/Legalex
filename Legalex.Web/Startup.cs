@@ -1,5 +1,9 @@
 ﻿using Legalex.BLL.DTO;
 using Legalex.BLL.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 
 namespace Legalex.Web
@@ -17,6 +21,7 @@ namespace Legalex.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll",
@@ -27,6 +32,13 @@ namespace Legalex.Web
                             .AllowAnyMethod()
                             .AllowAnyHeader();
                     });
+            });
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.LoginPath = "/Account/Login";
+                options.LogoutPath = "/Account/Logout";
+                options.ExpireTimeSpan = TimeSpan.FromDays(2);
             });
             services.AddApplicationDbContext(Configuration["ConnectionStrings:DefaultConnection"]);
             services.AddUnitOfWork();
@@ -48,7 +60,17 @@ namespace Legalex.Web
             }
 
             app.UseCors("AllowAll");
+            app.UseStatusCodePages();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=172800");
+                }
+            });
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

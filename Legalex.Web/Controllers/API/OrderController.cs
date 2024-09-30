@@ -21,13 +21,11 @@ namespace Legalex.Web.Controllers.API
         public override async Task<IActionResult> Post(OrderViewModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest("Model isn't valid");
-            }
 
             var order = new OrderDTO
             {
-                Type = model.Type,
+                ClientType = model.ClientType,
                 Service = model.Service,
                 Name = model.Name,
                 Contact = model.Contact,
@@ -47,9 +45,9 @@ namespace Legalex.Web.Controllers.API
             {
                 await _mediator.Send(new SendNotificationCommand(order));
             }
-            catch
+            catch (Exception ex)
             {
-                return BadRequest($"Failed to send notification");
+                return BadRequest(ex.Message);
             }
 
             return Ok();
