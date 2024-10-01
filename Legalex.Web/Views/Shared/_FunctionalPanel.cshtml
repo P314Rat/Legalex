@@ -1,12 +1,18 @@
-﻿<div class="f_panel">
-    <div class="profile">
-        <img src="/images/profile.svg"
-             alt="profile" />
+﻿@model UserViewModel
+
+
+<div class="functional-panel">
+    <div class="profile-icon">
+        <img src="/images/profile.png" alt="profile" />
+        <div class="user-name">@Model.FirstName @Model.LastName</div>
+        <div class="user-email">@Model.Email</div>
     </div>
-    <div class="name">User name</div>
-    <div class="button">Orders</div>
-    <div class="button">Business</div>
-    <div class="button">Calendar</div>
-    <div class="exit">Exit</div>
+    <div class="button-container">
+        <a class="button" asp-controller="Home" asp-action="Index">Заявки</a>
+        <a class="button" asp-controller="Home" asp-action="Index">Дела</a>
+        <a class="button" asp-controller="Home" asp-action="Index">Календарь</a>
+        <a class="button" asp-controller="Home" asp-action="Index">Сотрудники</a>
+        <a class="exit-button" asp-controller="Account" asp-action="Logout">Выход</a>
+    </div>
 </div>
 <link rel="stylesheet" href="~/Styles/_FunctionalPanel.css">

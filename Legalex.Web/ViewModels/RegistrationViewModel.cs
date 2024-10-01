@@ -1,6 +1,7 @@
 ﻿using Legalex.BLL.DTO;
 using Legalex.DAL.Models.UserAggregate;
 
+
 namespace Legalex.Web.ViewModels
 {
     public class RegistrationViewModel

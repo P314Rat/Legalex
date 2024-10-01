@@ -2,10 +2,11 @@
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
     margin: 0;
     padding: 0;
-    border: 0;
+    border: none;
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 * {
@@ -24,7 +25,7 @@ body {
     width: 100%;
     height: auto;
     margin-left: 1rem;
-    background-color: white;
+    /*background-color: white;*/
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -57,6 +58,10 @@ main {
 .container {
     width: 100%;
     margin: 0 auto;
+}
+
+.text-validation {
+    color: #d72b2b;
 }
 
 @media (min-width: 640px) {

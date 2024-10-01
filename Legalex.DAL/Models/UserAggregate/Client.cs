@@ -2,8 +2,8 @@
 {
     public enum ClientType
     {
-        Legal,
-        Person
+        Person,
+        Legal
     }
 
     public class Client : User

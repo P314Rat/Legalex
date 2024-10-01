@@ -10,5 +10,9 @@
   {
     "outputFile": "Static/Styles/Login.css",
     "inputFile": "Views/Account/Login.scss"
+  },
+  {
+    "outputFile": "Static/Styles/Index.css",
+    "inputFile": "Views/Home/Index.scss"
   }
 ]

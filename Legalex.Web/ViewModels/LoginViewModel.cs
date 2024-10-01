@@ -5,9 +5,11 @@ namespace Legalex.Web.ViewModels
 {
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Это необходимое поле")]
+        [EmailAddress(ErrorMessage = "Неверный формат электронной почты")]
         public string Email { get; set; } = string.Empty;
-        [Required]
+        [Required(ErrorMessage = "Это необходимое поле")]
+        [DataType(DataType.Password)]
         public string Password { get; set; } = string.Empty;
     }
 }

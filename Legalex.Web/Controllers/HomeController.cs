@@ -1,15 +1,53 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Legalex.DAL.Models;
+using Legalex.DAL.Models.UserAggregate;
+using Legalex.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Security.Claims;
+using System.Linq;
 
 namespace Legalex.Web.Controllers
 {
     [Authorize]
     public class HomeController : Controller
     {
+        private readonly IUnitOfWork _unitOfWork;
+
+
+        public HomeController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            var email = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+
+            if (email == null)
+                return BadRequest();
+
+            var user = _unitOfWork.Users.GetByEmail(email);
+
+            var userModel = new UserViewModel
+            {
+                Email = user.Email ?? string.Empty,
+                FirstName = user.FirstName,
+                LastName = user.LastName
+            };
+
+            ViewData["UserViewModel"] = userModel;
+
+            var orders = _unitOfWork.Orders.GetAll();
+            var ordersModel = (from order in orders
+                               select new OrderViewModel
+                               {
+                                   ClientType = order.ClientType,
+                                   Contact = order.Contact,
+                                   Name = order.Name,
+                                   Service = order.Service,
+                                   Description = order.Description
+                               }).ToList();
+            return View(ordersModel);
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Legalex.Web.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-            return RedirectToAction("Index", "Home");
+            return Redirect("Login");
         }
 
         [HttpPost]
@@ -71,7 +71,7 @@ namespace Legalex.Web.Controllers
         public async Task<IActionResult> LoginAsync(LoginViewModel model)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Model isn't valid");
+                return PartialView(model);
 
             var modelDTO = new UserDTO
             {
@@ -94,7 +94,8 @@ namespace Legalex.Web.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                ModelState.AddModelError("Email", "Неверные данные для входа");
+                return PartialView(model);
             }
         }
     }

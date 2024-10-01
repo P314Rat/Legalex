@@ -116,7 +116,10 @@ const Header = () => {
   const Contacts = () => {
     return (
       <div className="flex items-center divide-x-2 divide-gray-300">
-        <a href={process.env.REACT_APP_BASE_URL + '/account/login'} className="h-12 w-12 flex-col pr-2 hover:bg-blue_light/50">
+        <a
+          href={process.env.REACT_APP_BASE_URL + '/account/login'}
+          className="h-12 w-12 flex-col pr-2 hover:bg-blue_light/50"
+        >
           <img
             src="/images/login.svg"
             alt="telegram"

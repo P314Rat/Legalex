@@ -1,1 +1,34 @@
-﻿<p>Hi Legalex</p>
+﻿@model List<OrderViewModel>
+@{
+    var orders = Model;
+}
+
+
+<div class="orders">
+    <h2>Заявки</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Тип клиента</th>
+                <th>Тип услуги</th>
+                <th>Имя</th>
+                <th>Контакт</th>
+                <th>Описание</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in orders)
+            {
+                <tr>
+                    <td>@order.ClientType</td>
+                    <td>@order.Service</td>
+                    <td>@order.Name</td>
+                    <td>@order.Contact</td>
+                    <td>@order.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<link rel="stylesheet" href="~/Styles/Index.css">
