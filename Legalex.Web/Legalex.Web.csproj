@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Legalex.BLL\Legalex.BLL.csproj" />
+    <ProjectReference Include="..\Legalex.Utility\Legalex.Utility.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,9 +1,6 @@
 ﻿using Legalex.BLL.DTO;
 using Legalex.BLL.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 
 namespace Legalex.Web
@@ -38,7 +35,7 @@ namespace Legalex.Web
             {
                 options.LoginPath = "/Account/Login";
                 options.LogoutPath = "/Account/Logout";
-                options.ExpireTimeSpan = TimeSpan.FromDays(2);
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(8);
             });
             services.AddApplicationDbContext(Configuration["ConnectionStrings:DefaultConnection"]);
             services.AddUnitOfWork();

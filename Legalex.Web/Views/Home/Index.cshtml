@@ -1,6 +1,9 @@
-﻿@model List<OrderViewModel>
+﻿@using Legalex.Utility.Extensions
+@model List<OrderViewModel>
 @{
     var orders = Model;
+    ViewData["Title"] = "Заявки";
+    ViewData["Page"] = "Orders";
 }
 
 
@@ -20,8 +23,8 @@
             @foreach (var order in orders)
             {
                 <tr>
-                    <td>@order.ClientType</td>
-                    <td>@order.Service</td>
+                    <td>@order.ClientType.GetDisplayName()</td>
+                    <td>@order.Service.GetDisplayName()</td>
                     <td>@order.Name</td>
                     <td>@order.Contact</td>
                     <td>@order.Description</td>
@@ -29,6 +32,7 @@
             }
         </tbody>
     </table>
+    <span class="hint">* Для редактирования или получения подробной информации нажмите на строку.</span>
 </div>
 
 <link rel="stylesheet" href="~/Styles/Index.css">

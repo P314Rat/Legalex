@@ -67,6 +67,18 @@ namespace Legalex.DAL
                         FirstName = "Тимофей",
                         LastName = "Липницкий",
                     });
+
+                salt = CreateSalt(32);
+                _dbContext.Specialists.AddRange(
+                    new Specialist
+                    {
+                        Status = SpecialistStatus.Free,
+                        Email = "v.vlasenkov@legalex.by",
+                        PasswordHash = GenerateHash("Peredovaya15!", salt),
+                        PasswordSalt = salt,
+                        FirstName = "Владислав",
+                        LastName = "Власенков",
+                    });
             }
 
             _dbContext.SaveChanges();

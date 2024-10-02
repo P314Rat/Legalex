@@ -15,4 +15,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Legalex.Utility\Legalex.Utility.csproj" />
+  </ItemGroup>
+
 </Project>

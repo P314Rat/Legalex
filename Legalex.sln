@@ -5,9 +5,11 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Legalex.Web", "Legalex.Web\Legalex.Web.csproj", "{BA2791B3-B956-44AB-80F5-4B937AF44D55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Legalex.DAL", "Legalex.DAL\Legalex.DAL.csproj", "{C9B9710D-4A48-4405-B979-EF2FF2411BF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Legalex.DAL", "Legalex.DAL\Legalex.DAL.csproj", "{C9B9710D-4A48-4405-B979-EF2FF2411BF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Legalex.BLL", "Legalex.BLL\Legalex.BLL.csproj", "{4BE1C5A4-A466-48E4-9C35-E635125FEF47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Legalex.BLL", "Legalex.BLL\Legalex.BLL.csproj", "{4BE1C5A4-A466-48E4-9C35-E635125FEF47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Legalex.Utility", "Legalex.Utility\Legalex.Utility.csproj", "{DE97AC4E-1F91-45E9-839A-09BEACC9897C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{4BE1C5A4-A466-48E4-9C35-E635125FEF47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BE1C5A4-A466-48E4-9C35-E635125FEF47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BE1C5A4-A466-48E4-9C35-E635125FEF47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE97AC4E-1F91-45E9-839A-09BEACC9897C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE97AC4E-1F91-45E9-839A-09BEACC9897C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE97AC4E-1F91-45E9-839A-09BEACC9897C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE97AC4E-1F91-45E9-839A-09BEACC9897C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

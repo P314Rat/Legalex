@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Legalex.DAL\Legalex.DAL.csproj" />
+    <ProjectReference Include="..\Legalex.Utility\Legalex.Utility.csproj" />
   </ItemGroup>
 
 </Project>

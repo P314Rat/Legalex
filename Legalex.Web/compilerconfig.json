@@ -14,5 +14,17 @@
   {
     "outputFile": "Static/Styles/Index.css",
     "inputFile": "Views/Home/Index.scss"
+  },
+  {
+    "outputFile": "Static/Styles/Business.css",
+    "inputFile": "Views/Home/Business.scss"
+  },
+  {
+    "outputFile": "Static/Styles/Calendar.css",
+    "inputFile": "Views/Home/Calendar.scss"
+  },
+  {
+    "outputFile": "Static/Styles/Employees.css",
+    "inputFile": "Views/Home/Employees.scss"
   }
 ]

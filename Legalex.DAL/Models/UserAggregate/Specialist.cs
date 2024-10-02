@@ -1,8 +1,12 @@
-﻿namespace Legalex.DAL.Models.UserAggregate
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Legalex.DAL.Models.UserAggregate
 {
     public enum SpecialistStatus
     {
+        [Display(Name = "Свободен")]
         Free,
+        [Display(Name = "Занят")]
         Busy
     }
 

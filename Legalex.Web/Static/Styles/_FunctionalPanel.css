@@ -43,6 +43,11 @@
   gap: 1rem;
   justify-content: flex-start;
 }
+.functional-panel .button-container .button.active {
+  text-decoration: none;
+  border-color: #1767b3;
+  background-color: rgba(23, 103, 179, 0.5);
+}
 .functional-panel .button-container .button {
   padding: 0.5rem 2rem;
   border: 1px solid #1767b3;
@@ -51,6 +56,7 @@
   color: white;
 }
 .functional-panel .button-container .button:hover {
+  cursor: pointer;
   text-decoration: none;
   border-color: #1767b3;
   background-color: rgba(23, 103, 179, 0.5);

@@ -1,17 +1,27 @@
 ﻿using Legalex.DAL.Models.UserAggregate;
+using System.ComponentModel.DataAnnotations;
 
 namespace Legalex.DAL.Models.OrderAggregate
 {
     public enum Service
     {
+        [Display(Name = "Не выбран")]
         NonSelected,
+        [Display(Name = "Юридические услуги")]
         Legal,
+        [Display(Name = "Антикризисное управление")]
         CrisisManagement,
+        [Display(Name = "Медиация")]
         Mediation,
+        [Display(Name = "HR услуги")]
         HR,
+        [Display(Name = "Услуги кадрового специалиста")]
         HRSupport,
+        [Display(Name = "Охрана труда")]
         OccupationalSafetyAndHealth,
+        [Display(Name = "Защита персональных данных")]
         ProtectionOfPersonalInformation,
+        [Display(Name = "Услуги экономиста")]
         Finance
     }
 

@@ -48,6 +48,12 @@
         gap: 1rem;
         justify-content: flex-start;
 
+        .button.active {
+            text-decoration: none;
+            border-color: #1767b3;
+            background-color: rgba(23, 103, 179, 0.5);
+        }
+
         .button {
             padding: .5rem 2rem;
             border: 1px solid #1767b3;
@@ -56,6 +62,7 @@
             color: white;
 
             &:hover {
+                cursor: pointer;
                 text-decoration: none;
                 border-color: #1767b3;
                 background-color: rgba(23, 103, 179, 0.5);

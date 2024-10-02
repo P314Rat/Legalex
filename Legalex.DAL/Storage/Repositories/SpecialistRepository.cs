@@ -39,7 +39,7 @@ namespace Legalex.DAL.Storage.Repositories
 
         public IEnumerable<Specialist>? GetAll()
         {
-            throw new NotImplementedException();
+            return _dbContext?.Specialists.ToList();
         }
 
         public Specialist? GetById(string id)
