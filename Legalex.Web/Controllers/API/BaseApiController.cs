@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Legalex.Web.Controllers.API
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     abstract public class BaseApiController : ControllerBase, IBaseApiOperations
     {
         [HttpPost]
