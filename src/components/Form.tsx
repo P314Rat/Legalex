@@ -41,7 +41,7 @@ const Form = ({ selectService, sendFeedback, isError, isSuccess, isLoading }: IF
             //@ts-ignore
             type: parseInt(e.currentTarget.elements.type.value),
             //@ts-ignore
-            service: parseInt(e.currentTarget.elements.service.value),
+            service: e.currentTarget.elements.service.value,
             //@ts-ignore
             description: e.currentTarget.elements.message.value,
           }
@@ -83,7 +83,7 @@ const Form = ({ selectService, sendFeedback, isError, isSuccess, isLoading }: IF
           <option value="">Выберите тип услуги</option>
           <option value="0">Не могу выбрать тип услуги</option>
           {services?.map((item, index) => (
-            <option key={index} value={index + 1}>
+            <option key={index} value={item}>
               {item}
             </option>
           ))}
