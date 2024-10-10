@@ -117,8 +117,9 @@ const Header = () => {
     return (
       <div className="flex items-center divide-x-2 divide-gray-300">
         <a
-          href={process.env.REACT_APP_ACCOUNT_URL + '/account/login'}
-          className="h-12 w-12 flex-col pr-2 hover:bg-blue_light/50"
+          href={process.env.REACT_APP_ACCOUNT_URL}
+          target="_blank"
+          className="mr-2 h-12 w-12 flex-col pr-2 hover:bg-blue_light/50"
         >
           <img
             src="/images/login.svg"
@@ -195,10 +196,12 @@ const Header = () => {
           <div className="flex items-center justify-between">
             <Link to={'/'} className="flex items-center gap-4">
               <img src="/images/logo-white.png" alt="Legalex" className="h-14 w-14" />
-              <div className="flex flex-col">
-                <span className="text-2xl leading-[1] lg:text-4xl">LegaLex</span>
-                <span className="text-sm lg:text-base">Юридическая фирма</span>
-              </div>
+              {resize >= 1440 && (
+                <div className="flex flex-col">
+                  <span className="text-2xl leading-[1] lg:text-4xl">LegaLex</span>
+                  <span className="text-sm lg:text-base">Юридическая фирма</span>
+                </div>
+              )}
             </Link>
             {resize >= 1024 ? (
               <>

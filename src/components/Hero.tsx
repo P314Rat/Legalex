@@ -71,7 +71,7 @@ const Hero = () => {
                     <div className="absolute left-0 top-0 h-full w-full bg-transparent bg-gradient-to-t" />
                   </div>
                   <div className="container h-full">
-                    <div className="relative flex h-full w-full flex-col justify-center p-4 text-white">
+                    <div className="relative flex h-full w-full flex-col justify-center lg:p-16 text-white">
                       <div className="mt-8 flex flex-col gap-4">
                         <span className="text-4xl md:text-6xl">{hero.caption}</span>
                         <button

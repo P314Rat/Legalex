@@ -98,6 +98,13 @@ const Footer = () => {
                 >
                   Связаться с нами
                 </Link>
+                <a
+                  className="hover:text-white"
+                  href={process.env.REACT_APP_ACCOUNT_URL}
+                  target="_blank"
+                >
+                  Вход в аккаунт
+                </a>
               </div>
             </div>
           </div>
