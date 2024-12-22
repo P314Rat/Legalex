@@ -29,13 +29,13 @@ const Contacts = () => {
                       />
                     </div>
                     <span className="md:text-lg">
-                      г.Минск, улица Передовая 15, помещение 1, офис 16 Г
+                      220049, г.Минск, улица Кнорина, д. 1, корп. 3, пом. 1, 2
                     </span>
                   </div>
                   <iframe
-                    src="https://yandex.ru/map-widget/v1/?um=constructor%3A1d595dba3335b9053bc84c8484c9bb40f8f64190dfaf35e568ccadf546868188&amp;source=constructor"
-                    width="100%"
-                    height="100%"
+                    src="https://yandex.ru/map-widget/v1/?um=constructor%3A2f9f16b8a394f7ed1d35cc11b555b572373b4d9038022b7f3bc42130a7931b90&amp;source=constructor"
+                    width="560"
+                    height="310"
                   ></iframe>
                 </div>
                 <div className="flex gap-4 lg:justify-center lg:gap-6">

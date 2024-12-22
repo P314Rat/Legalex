@@ -47,7 +47,7 @@ const Footer = () => {
                 <div className="flex items-center gap-2">
                   <img src={'/images/location.png'} className="h-5 w-5" alt="icon-document" />
                   <span className="">
-                    г.Минск, улица Передовая 15, <br /> помещение 1, офис 16 Г
+                  220049, г.Минск, улица Кнорина, д. 1, корп. 3, <br /> пом. 1, 2
                   </span>
                 </div>
                 <div className="flex items-start gap-2">
