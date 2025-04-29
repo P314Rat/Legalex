@@ -1,0 +1,22 @@
+# Node modules (локальные, мы их пересоздаем в образе)
+node_modules
+
+# Папка сборки (она будет создана в контейнере)
+build
+
+# Git-репозиторий
+.git
+.gitignore
+
+# Логи и временные файлы
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Системные файлы
+.DS_Store
+.env
+.env.local
+.env.development
+.env.production
